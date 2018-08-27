@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-
-Test home page
+    <div id="map"></div>
 <?php
 get_footer();
