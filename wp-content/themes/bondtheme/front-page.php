@@ -6,16 +6,163 @@
         </div>
         <nav class="navigation">
             <ul>
-                <li class=""><a href="#">Handsome</a></li>
-                <li class=""><a href="#">Charming</a></li>
-                <li class=""><a href="#">Sense of humour</a></li>
-                <li class=""><a href="#">Confidence</a></li>
-                <li class=""><a href="#">Gentlemanly</a></li>
-                <li class=""><a href="#">Risk taker</a></li>
-                <li class=""><a href="#">Good in a crisis</a></li>
-                <li class=""><a href="#">Flirtatious</a></li>
+                <li class="navigation-item">
+                    <a href="#">Handsome</a>
+                    <div class="navigation-sub">
+                        <ul class="navigation-cities">
+                            <li class="navigation-city">
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">Charming</a>
+                    <div class="navigation-sub">
+                        <ul class="navigation-cities">
+                            <li class="navigation-city">
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">Sense of humour</a>
+                    <div class="navigation-sub">
+                        <ul class="navigation-cities">
+                            <li class="navigation-city">
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">Confidence</a>
+                    <div class="navigation-sub">
+                        <ul class="navigation-cities">
+                            <li class="navigation-city">
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">Gentlemanly</a>
+                    <div class="navigation-sub">
+                        <ul class="navigation-cities">
+                            <li class="navigation-city">
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">Risk taker</a>
+                    <div class="navigation-sub">
+                        <ul class="navigation-cities">
+                            <li class="navigation-city">
+                                <a href="#">London</a>
+                                <a href="#">Birmingham</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">Good in a crisis</a>
+                    <div class="navigation-sub">
+                        <ul class="navigation-cities">
+                            <li class="navigation-city">
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                                <a href="#">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">Flirtatious</a>
+                    <div class="navigation-sub">
+                        <ul class="navigation-cities">
+                            <li class="navigation-city">
+                                <a href="#">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </nav>
+    </div>
+    <div class="city-popup">
+        <h3 class="popup-title">
+
+        </h3>
     </div>
     <div class="main-popup">
         <div class="popup">
