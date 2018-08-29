@@ -536,6 +536,7 @@ html, body, .site, .site-content{
     align-items: center;
     padding: 20px 0;
     z-index: 1000;
+    cursor: pointer;
 }
 .popup{
     background: url('/wp-content/themes/bondtheme/images/popup-bg.svg') 0 0 / cover #36394d;
@@ -544,6 +545,7 @@ html, body, .site, .site-content{
     max-width: 590px;
     padding: 70px 90px 20px 250px;
     position: relative;
+    overflow: hidden;
 }
 .popup-logo{
     max-height: 122px;
@@ -560,8 +562,7 @@ html, body, .site, .site-content{
 .popup-bond{
     position: absolute;
     left: 0;
-    bottom: -70px;
-    height: 600px;
+    bottom: 0;
 }
 .popup-numbers{
     cursor: pointer;
@@ -604,9 +605,11 @@ html, body, .site, .site-content{
 .main-nav{
     background: #36394d;
     position: absolute;
-    top: 15%;
+    top: 50%;
     left: 10px;
-    max-height: 70%;
+    transform: translateY(-50%);
+    overflow-y: auto;
+    max-height: 94%;
     padding: 30px 20px 30px 15px;
     border-radius: 10px;
 }
