@@ -11,109 +11,69 @@
 
 ?>
 <?php
-
-
-$response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=London&sensor=false&language=ru');
-$response = json_decode($response);
-
-$lat = $response->results[0]->geometry->location->lat;
-$lng = $response->results[0]->geometry->location->lng;
+$getCityLocation = getCity();
+$jsonLocation = json_encode($getCityLocation);
 ?>
-<script>
+<script  type="text/javascript" charset="UTF-8" >
 
-    function initMap() {
-        var styles = [
-            {
-                "stylers": [
-                    {
-                        "hue": "#2c3e50"
-                    },
-                    {
-                        "saturation": 250
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "lightness": 50
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            }
-        ];
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 6,
-            center: {lat: 51.5073509, lng: -0.1277583}
-        });
-        map.setOptions({styles: styles});
-        setMarkers(map);
-    }
+    var jsonLocation = <?php echo $jsonLocation; ?>;
+    /**
+     * Adds markers to the map highlighting the locations of the captials of
+     * France, Italy, Germany, Spain and the United Kingdom.
+     *
+     * @param  {H.Map} map      A HERE Map instance within the application
+     */
+    function addMarkersToMap(map) {
+        var svgMarkup = '<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 473.931 473.931">' +
+            '<circle cx="236.966" cy="236.966" r="236.966" fill="red"/>' +
+            '<g fill="#333">' +
+            '<path d="M383.164 237.123c-1.332 80.699-65.514 144.873-146.213 146.206-80.702 1.332-144.907-67.52-146.206-146.206-.198-12.052-18.907-12.071-18.709 0 1.5 90.921 73.993 163.414 164.914 164.914 90.929 1.5 163.455-76.25 164.922-164.914.199-12.071-18.51-12.052-18.708 0z"/>' +
+            '<circle cx="164.937" cy="155.227" r="37.216"/>' +
+            '<circle cx="305.664" cy="155.227" r="37.216"/>' +
+            '</g>' +
+            '</svg>';
 
-    // Data for the markers consisting of a name, a LatLng and a zIndex for the
-    // order in which these markers should display on top of each other.
-    var сities = [
-        ['London', 51.5073509, -0.1277583],
-        ['Bristol', 51.454513, -2.58791],
-        ['Glasgow', 55.864237, -4.251806],
-        ['Liverpool', 53.4083714, -2.9915726],
-        ['Edinburgh', 55.953252, -3.188267]
-    ];
+        var mapIcon = new H.map.Icon( svgMarkup );
 
-    function setMarkers(map) {
-        // Adds markers to the map.
-
-        // Marker sizes are expressed as a Size of X,Y where the origin of the image
-        // (0,0) is located in the top left of the image.
-
-        // Origins, anchor positions and coordinates of the marker increase in the X
-        // direction to the right and in the Y direction down.
-        var image = {
-            url: 'http://www.petstoretrading.com/images/billeder_af_tegn/color_6.png',
-            // This marker is 20 pixels wide by 32 pixels high.
-            size: new google.maps.Size(20, 32),
-            // The origin for this image is (0, 0).
-            origin: new google.maps.Point(0, 0),
-            // The anchor for this image is the base of the flagpole at (0, 32).
-            anchor: new google.maps.Point(0, 32)
-        };
-        // Shapes define the clickable region of the icon. The type defines an HTML
-        // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-        // The final coordinate closes the poly by connecting to the first coordinate.
-        var shape = {
-            coords: [1, 1, 1, 20, 18, 20, 18, 1],
-            type: 'poly'
-        };
-        for (var i = 0; i < сities.length; i++) {
-            var city = сities[i];
-            var marker = new google.maps.Marker({
-                position: {lat: city[1], lng: city[2]},
-                map: map,
-                icon: image,
-                shape: shape,
-                title: city[0],
-
-            });
+        for (var i in jsonLocation){
+            Marker = new H.map.Marker(
+                {lat:jsonLocation[i]['lat'], lng:jsonLocation[i]['lng'] },
+                {icon: mapIcon}
+            );
+            map.addObject(Marker);
         }
+
     }
-
+    /**
+     * Boilerplate map initialization code starts below:
+     */
+//Step 1: initialize communication with the platform
+    var platform = new H.service.Platform({
+        app_id: 'KngCq2F5ZiDAoC5mHcOf',
+        app_code: 'B9eBCS_ZNlw3uV-F8JilqQ',
+        useHTTPS: true
+    });
+    var pixelRatio = window.devicePixelRatio || 1;
+    var defaultLayers = platform.createDefaultLayers({
+        tileSize: pixelRatio === 1 ? 256 : 512,
+        ppi: pixelRatio === 1 ? undefined : 320
+    });
+    //Step 2: initialize a map - this map is centered over Europe
+    var map = new H.Map(document.getElementById('map'),
+        defaultLayers.normal.map,{
+            center: {lat:50, lng:5},
+            zoom: 5,
+            pixelRatio: pixelRatio
+        });
+    //Step 3: make the map interactive
+    // MapEvents enables the event system
+    // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    // Create the default UI components
+    var ui = H.ui.UI.createDefault(map, defaultLayers);
+    // Now use the map as required...
+    addMarkersToMap(map);
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0FE32AHtYYEuLcrnGFDan1_SJx8mkzss&callback=initMap"
-        type="text/javascript"></script>
 <?php wp_footer(); ?>
-
 </body>
 </html>

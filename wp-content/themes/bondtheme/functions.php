@@ -212,3 +212,32 @@ add_action( 'template_redirect', function() {
         nocache_headers();
     }
 } );
+
+function getCity(){
+    $cityArray = array();
+    $query_array = array(
+        'post_type' => 'city',
+        'post_status' => 'publish',
+        'posts_per_page' => '-1',
+
+    );
+    $cityPosts = new WP_Query( $query_array );
+    if ( $cityPosts->have_posts() ):
+        while ( $cityPosts->have_posts() ): $cityPosts->the_post();
+            $post_pay_id = get_the_ID();
+            $title = get_the_title();
+$title = str_replace(' ', '+', $title);
+            $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title.'&sensor=false&language=ru');
+            $response = json_decode($response);
+            $lat = $response->results[0]->geometry->location->lat;
+            $lng = $response->results[0]->geometry->location->lng;
+            $location = array(
+                'lat' => $lat,
+                'lng' => $lng,
+                'city' => $title,
+            );
+            $cityArray[] = $location;
+        endwhile; endif;
+
+        return $cityArray;
+}
