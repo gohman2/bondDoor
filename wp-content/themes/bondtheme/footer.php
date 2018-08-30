@@ -58,21 +58,45 @@ $jsonLocation = json_encode($getCityLocation);
         tileSize: pixelRatio === 1 ? 256 : 512,
         ppi: pixelRatio === 1 ? undefined : 320
     });
+
+    var mapTileService = platform.getMapTileService({ 'type': 'base' });
+
+    // Create a tile layer which requests map tiles with an additional 'style'
+    // URL parameter set to 'fleet':
+
+
+
+
+    var fleetStyleLayer = mapTileService.createTileLayer(
+        'maptile',
+        'normal.day.grey',
+        256,
+        'png8',
+        { 'style': 'alps' });
+
+    // Set the new fleet style layer as a base layer on the map:
+
     //Step 2: initialize a map - this map is centered over Europe
     var map = new H.Map(document.getElementById('map'),
         defaultLayers.normal.map,{
             center: {lat:50, lng:5},
             zoom: 5,
-            pixelRatio: pixelRatio
+            pixelRatio: pixelRatio,
+
+
         });
-    //Step 3: make the map interactive
-    // MapEvents enables the event system
-    // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+
+
+
+
+
+
     var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
     // Create the default UI components
     var ui = H.ui.UI.createDefault(map, defaultLayers);
     // Now use the map as required...
-    addMarkersToMap(map);
+    // addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
+    addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
 </script>
 <?php wp_footer(); ?>
 </body>
