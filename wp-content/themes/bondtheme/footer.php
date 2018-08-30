@@ -11,8 +11,8 @@
 
 ?>
 <?php
-$getCityLocation = getCity();
-$jsonLocation = json_encode($getCityLocation);
+    $getCityLocation = getCity();
+    $jsonLocation    = json_encode($getCityLocation);
 ?>
 <script  type="text/javascript" charset="UTF-8" >
 

@@ -214,31 +214,77 @@ add_action( 'template_redirect', function() {
     }
 } );
 
+/* get location from google api*/
 function getCity(){
     $cityArray = array();
     $query_array = array(
         'post_type' => 'city',
         'post_status' => 'publish',
         'posts_per_page' => '-1',
-
     );
     $cityPosts = new WP_Query( $query_array );
     if ( $cityPosts->have_posts() ):
         while ( $cityPosts->have_posts() ): $cityPosts->the_post();
             $post_pay_id = get_the_ID();
             $title = get_the_title();
-$title = str_replace(' ', '+', $title);
+            $title = str_replace(' ', '+', $title);
             $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title.'&sensor=false&language=ru');
             $response = json_decode($response);
             $lat = $response->results[0]->geometry->location->lat;
             $lng = $response->results[0]->geometry->location->lng;
             $location = array(
-                'lat' => $lat,
-                'lng' => $lng,
-                'city' => $title,
+                'lat'   => $lat,
+                'lng'   => $lng,
+                'city'  => $title,
             );
             $cityArray[] = $location;
         endwhile; endif;
 
-        return $cityArray;
+    return $cityArray;
+}
+
+function getMenuItem(){
+    $menuItems = array();
+    $terms = get_terms( array(
+        'taxonomy'      => array( 'feature' ),
+        'orderby'       => 'term_order',
+        'order'         => 'ASC',
+        'hide_empty'    => false,
+        'object_ids'    => null, //
+    ) );
+
+    if($terms){
+        foreach ($terms as $term){
+            $id_cat = $term->term_id;
+            $categoryName = $term->name;
+            $menu['category'] = $categoryName;
+//            $menuItems[] = $categoryName;
+                $query_array = array(
+                    'post_type' => 'city',
+                    'post_status' => 'publish',
+                    'posts_per_page' => '-1',
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'feature',
+                            'field' => 'id',
+                            'terms' => $id_cat
+                        )
+                    )
+                );
+
+                $cities = new WP_Query( $query_array );
+                $childsItem = array();
+                if ( $cities->have_posts() ):
+                    while ( $cities->have_posts() ): $cities->the_post();
+                        $post_pay_id = get_the_ID();
+                        $title = get_the_title();
+                        $childsItem[] =  $title;
+
+                    endwhile;
+                endif;
+            $menu['child'] = $childsItem;
+            $menuItems[] = $menu;
+        }
+    }
+    return $menuItems;
 }
