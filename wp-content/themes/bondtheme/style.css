@@ -526,7 +526,8 @@ html, body, .site, .site-content{
     height: 100%;
     position: relative;
 }
-.main-popup{
+.main-popup,
+.city-popup-wrapper{
     position: absolute;
     background: rgba(240,240,240,0.8);
     width: 100%;
@@ -697,4 +698,16 @@ html, body, .site, .site-content{
     width: 6px;
     height: 6px;
     margin-top: -3px;
+}
+.popup-title{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 36px;
+    line-height: 40px;
+    text-align: center;
+    color: #fffdfe;
+}
+.city-popup-wrapper{
+    display: none;
+    background: none;
+    cursor: auto;
 }

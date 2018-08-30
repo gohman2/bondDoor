@@ -121,7 +121,7 @@ add_action( 'widgets_init', 'bondtheme_widgets_init' );
  */
 function bondtheme_scripts() {
 	wp_enqueue_style( 'bondtheme-style', get_stylesheet_uri() );
-
+    wp_enqueue_style( 'google_fonts_opensans', "https://fonts.googleapis.com/css?family=Libre+Baskerville");
 	wp_enqueue_script( 'bondtheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 	wp_enqueue_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(), '20151215', true );
 

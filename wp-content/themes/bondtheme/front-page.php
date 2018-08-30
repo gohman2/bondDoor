@@ -159,10 +159,10 @@
             </ul>
         </nav>
     </div>
-    <div class="city-popup">
-        <h3 class="popup-title">
-
-        </h3>
+    <div class="city-popup-wrapper">
+        <div class="city-popup">
+            <h3 class="popup-title">Birmingham</h3>
+        </div>
     </div>
     <div class="main-popup">
         <div class="popup">
