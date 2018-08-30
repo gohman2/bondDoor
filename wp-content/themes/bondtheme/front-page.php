@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<div id="map" style='width: 100vw; height: 100vh;' />
 <div class="wrapper">
     <div class="main-nav">
         <div class="logo">
@@ -183,9 +184,3 @@
 </div>
 <?php
 get_footer();
-
-
-
-
-
-
