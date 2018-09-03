@@ -498,6 +498,37 @@ img {
 /*--------------------------------------------------------------
 ## Links
 --------------------------------------------------------------*/
+/*Scroll styling*/
+::-webkit-scrollbar-button {
+    background-image:url('');
+    background-repeat:no-repeat;
+    width:3px;
+    height:0px
+}
+
+::-webkit-scrollbar-track {
+    background-color:#32312e;
+    box-shadow:0px 0px 3px #000 inset;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    width: 3px;
+    background-color: rgba(255,253,254,0.25);
+}
+
+::-webkit-resizer{
+    background-image:url('');
+    background-repeat:no-repeat;
+    width:3px;
+    height:0
+}
+
+::-webkit-scrollbar{
+    width: 3px;
+}
+
 a {
 	color: inherit;
 	text-decoration: none;
@@ -530,7 +561,7 @@ html, body, .site, .site-content{
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    z-index: 1000;
+    z-index: 99;
     cursor: pointer;
 }
 .popup,
@@ -729,8 +760,60 @@ html, body, .site, .site-content{
     font-family: 'Gill Sans', sans-serif;
     color: #cacace;
 }
-.city-diagram .get {
-    display: none;
+.circliful .outer {
+    fill: transparent;
+    stroke: #333;
+    stroke-width: 19.8;
+    stroke-dasharray: 534;
+    transition: stroke-dashoffset 1s;
+    -webkit-animation-play-state: running;
+    /* firefox bug fix - won't rotate at 90deg angles */
+    -moz-transform: rotate(-89deg) translateX(-190px);
+}
+
+/* full circle 25 empty 534 */
+.circliful .inner {
+    fill: transparent;
+    stroke: orange;
+    stroke-width: 20;
+    stroke-dasharray: 534;
+    transition: stroke-dashoffset 1s;
+    -webkit-animation-play-state: running;
+    /* firefox bug fix - won't rotate at 90deg angles */
+    -moz-transform: rotate(-89deg) translateX(-190px);
+    stroke-dashoffset: 0;
+}
+
+.circliful {
+    overflow: visible !important;
+    width: 100%;
+}
+
+.svg-container {
+    width: 100%;
+    margin: 0 auto;
+    overflow: visible;
+    position: relative;
+    display: flex;
+    z-index: 10;
+}
+
+svg .icon {
+    font-family: FontAwesome;
+}
+
+.legend-line {
+    white-space: nowrap;
+}
+
+.color-box {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    display: inline-block;
+    float: left;
+    padding-top: 3px;
+    margin: 2px 5px 0 0;
 }
 .city-diagram-container{
     display: flex;
@@ -856,4 +939,15 @@ html, body, .site, .site-content{
     font-size: 12px;
     color: #cacace;
     text-align: left;
+}
+.popup-close{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+.popup-close img{
+    width: 100%;
 }

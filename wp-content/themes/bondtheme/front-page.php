@@ -160,6 +160,11 @@
             </ul>
         </nav>
     </div>
+    <div class="socials">
+        <ul>
+            <li><a href="#"></a></li>
+        </ul>
+    </div>
     <div class="city-popup-box">
         <div class="city-popup-wrapper">
             <div class="city-popup">
@@ -176,32 +181,14 @@
                     </div>
                     <div class="city-diagram-container">
                         <div class="city-diagram">
-                            <div id="content">
-                                <div id="diagram"></div>
-                            </div>
-                            <div class="get">
-                                <div class="arc">
-                                    <span class="text">JavaScript</span>
-                                    <input type="hidden" class="percent" value="50" />
-                                    <input type="hidden" class="color" value="#00bfd1" />
-                                </div>
-                                <div class="arc"> <!--    Just circle-->
-                                    <input type="hidden" class="percent" value="100" />
-                                    <input type="hidden" class="color" value="#fff" />
-                                </div>
-                                <div class="arc">
-                                    <span class="text">MySQL123123</span>
-                                    <input type="hidden" class="percent" value="85" />
-                                    <input type="hidden" class="color" value="#ff1e7c" />
-                                </div>
-                            </div>
+                            <div id="diagram"></div>
                         </div>
                         <div class="city-features">
                             <ul>
-                                <li class="navigation-item">Handsome</li>
-                                <li class="navigation-item">Handsome2</li>
-                                <li class="navigation-item">Handsome3</li>
-                                <li class="navigation-item">Handsome4</li>
+                                <li data-percent="10" class="navigation-item">Handsome</li>
+                                <li data-percent="20" class="navigation-item">Handsome2</li>
+                                <li data-percent="50" class="navigation-item">Handsome3</li>
+                                <li data-percent="90" class="navigation-item">Handsome4</li>
                             </ul>
                         </div>
                     </div>
@@ -213,6 +200,9 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore dolorum nam numquam repellat sit temporibus. Aperiam deleniti doloremque ducimus et exercitationem harum, id illo, incidunt perferendis quasi sunt voluptatibus.
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore dolorum nam numquam repellat sit temporibus. Aperiam deleniti doloremque ducimus et exercitationem harum, id illo, incidunt perferendis quasi sunt voluptatibus.
                     </p>
+                </div>
+                <div class="popup-close">
+                    <img src="/wp-content/themes/bondtheme/images/close.svg" alt="close popup">
                 </div>
             </div>
         </div>
