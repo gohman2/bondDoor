@@ -21,7 +21,7 @@
                         <ul class="navigation-cities">
                             <li class="navigation-city">
                                 <?php foreach ( $item['child'] as $childItem ){ ?>
-                                <a href="#"><?php echo $childItem; ?></a>
+                                <a data-id="<?php echo $childItem['cityId']; ?>" href="#"><?php echo $childItem['name']; ?></a>
                                 <?php } ?>
                             </li>
                         </ul>
@@ -33,9 +33,8 @@
         </nav>
     </div>
     <?php } ?>
-    <div class="city-popup-wrapper">
-        <div class="city-popup">
-            <h3 class="popup-title">Birmingham</h3>
+
+
     <div class="city-popup-box">
         <div class="city-popup-wrapper">
             <div class="city-popup">
@@ -67,7 +66,17 @@
                                 </div>
                                 <div class="arc">
                                     <span class="text">MySQL123123</span>
-                                    <input type="hidden" class="percent" value="85" />
+                                    <input type="hidden" class="percent" value="7.5" />
+                                    <input type="hidden" class="color" value="#ff1e7c" />
+                                </div>
+                                <div class="arc">
+                                    <span class="text">test1</span>
+                                    <input type="hidden" class="percent" value="60" />
+                                    <input type="hidden" class="color" value="#ff1e7c" />
+                                </div>
+                                <div class="arc">
+                                    <span class="text">test2</span>
+                                    <input type="hidden" class="percent" value="50" />
                                     <input type="hidden" class="color" value="#ff1e7c" />
                                 </div>
                             </div>
@@ -109,6 +118,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 <?php
 get_footer();
