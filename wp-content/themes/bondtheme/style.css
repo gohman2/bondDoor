@@ -797,11 +797,6 @@ html, body, .site, .site-content{
     display: flex;
     z-index: 10;
 }
-
-svg .icon {
-    font-family: FontAwesome;
-}
-
 .legend-line {
     white-space: nowrap;
 }
@@ -811,9 +806,10 @@ svg .icon {
     height: 15px;
     border-radius: 2px;
     display: inline-block;
-    float: left;
     padding-top: 3px;
     margin: 2px 5px 0 0;
+    position: relative;
+    z-index: 100;
 }
 .city-diagram-container{
     display: flex;
