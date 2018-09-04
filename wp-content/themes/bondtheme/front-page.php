@@ -162,7 +162,9 @@
     </div>
     <div class="socials">
         <ul>
-            <li><a href="#"></a></li>
+            <li><a href="#"><img src="/wp-content/themes/bondtheme/images/facebook.svg" alt="facebook"></a></li>
+            <li><a href="#"><img src="/wp-content/themes/bondtheme/images/twitter.svg" alt="twitter"></a></li>
+            <li><a href="#"><img src="/wp-content/themes/bondtheme/images/information.svg" alt="information"></a></li>
         </ul>
     </div>
     <div class="city-popup-box">

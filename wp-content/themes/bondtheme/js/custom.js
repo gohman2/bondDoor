@@ -51,7 +51,7 @@
 //Close main popup
         $('.wrapper').on('click', '.main-popup', function () {
             $(this).fadeOut(400);
-            $('.main-nav').addClass('shown');
+            $('.main-nav, .socials').addClass('shown');
         });
 
 //Show submenu with cities
