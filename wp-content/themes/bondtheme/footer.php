@@ -69,10 +69,11 @@
 
     var fleetStyleLayer = mapTileService.createTileLayer(
         'maptile',
-        'normal.day.grey',
+        'pedestrian.night',
         256,
         'png8',
-        { 'style': 'alps' });
+
+        { 'style': 'mini' });
 
     // Set the new fleet style layer as a base layer on the map:
 
@@ -85,7 +86,6 @@
 
 
         });
-
 
 
 
