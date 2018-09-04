@@ -10,6 +10,7 @@
                foregroundBorderWidth: 10,
                backgroundBorderWidth: 10,
                textSize: 28,
+               iconColor: 'transparent',
                textStyle: 'font-size: 12px;',
                textColor: '#fffdfe',
                multiPercentage: 1,
@@ -17,6 +18,7 @@
                    {'percent': 40, 'color': '#00BFD1', 'title': 'Gryffindor' },
                    {'percent': 85, 'color': '#FF1E7C', 'title': 'Ravenclaw' },
                ],
+               replacePercentageByText: 'test',
 
            });
        }
@@ -25,6 +27,7 @@
            $("#diagram").circliful({
                animation: 1,
                animationStep: 5,
+               iconColor: 'transparent',
                foregroundBorderWidth: 10,
                backgroundBorderWidth: 10,
                textSize: 28,
@@ -35,6 +38,7 @@
                    {'percent': 40, 'color': '#00BFD1', 'title': 'Gryffindor' },
                    {'percent': percent, 'color': '#FF1E7C', 'title': 'Ravenclaw' },
                ],
+               replacePercentageByText: 'test',
            });
        }
 
