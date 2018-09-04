@@ -1,165 +1,40 @@
 <?php get_header(); ?>
+<?php
+    $menuItems = getMenuItem();
+
+?>
 <div class="wrapper">
+
     <div id="map" style='width: 100vw; height: 100vh;' />
+    <?php if( !empty( $menuItems ) ){ ?>
     <div class="main-nav">
         <div class="logo">
             <img src="/wp-content/themes/bondtheme/images/logo.svg" alt="Bond next door">
         </div>
         <nav class="navigation">
             <ul>
+                <?php foreach ( $menuItems as $item ){ ?>
                 <li class="navigation-item">
-                    <a href="#">Handsome</a>
+                    <a href="#"><?php echo $item['category']; ?></a>
+                    <?php if( !empty( $item['child'] ) ){ ?>
                     <div class="navigation-sub">
                         <ul class="navigation-cities">
                             <li class="navigation-city">
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
+                                <?php foreach ( $item['child'] as $childItem ){ ?>
+                                <a data-id="<?php echo $childItem['cityId']; ?>" href="#"><?php echo $childItem['name']; ?></a>
+                                <?php } ?>
                             </li>
                         </ul>
                     </div>
+                    <?php } ?>
                 </li>
-                <li class="navigation-item">
-                    <a href="#">Charming</a>
-                    <div class="navigation-sub">
-                        <ul class="navigation-cities">
-                            <li class="navigation-city">
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="navigation-item">
-                    <a href="#">Sense of humour</a>
-                    <div class="navigation-sub">
-                        <ul class="navigation-cities">
-                            <li class="navigation-city">
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="navigation-item">
-                    <a href="#">Confidence</a>
-                    <div class="navigation-sub">
-                        <ul class="navigation-cities">
-                            <li class="navigation-city">
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="navigation-item">
-                    <a href="#">Gentlemanly</a>
-                    <div class="navigation-sub">
-                        <ul class="navigation-cities">
-                            <li class="navigation-city">
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="navigation-item">
-                    <a href="#">Risk taker</a>
-                    <div class="navigation-sub">
-                        <ul class="navigation-cities">
-                            <li class="navigation-city">
-                                <a href="#">London</a>
-                                <a href="#">Birmingham</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="navigation-item">
-                    <a href="#">Good in a crisis</a>
-                    <div class="navigation-sub">
-                        <ul class="navigation-cities">
-                            <li class="navigation-city">
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                                <a href="#">London</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="navigation-item">
-                    <a href="#">Flirtatious</a>
-                    <div class="navigation-sub">
-                        <ul class="navigation-cities">
-                            <li class="navigation-city">
-                                <a href="#">London</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                <?php } ?>
             </ul>
         </nav>
     </div>
+    <?php } ?>
+
+
     <div class="socials">
         <ul>
             <li><a href="#"><img src="/wp-content/themes/bondtheme/images/facebook.svg" alt="facebook"></a></li>

@@ -216,31 +216,166 @@ add_action( 'template_redirect', function() {
     }
 } );
 
+/* get location from google api*/
 function getCity(){
     $cityArray = array();
     $query_array = array(
         'post_type' => 'city',
         'post_status' => 'publish',
         'posts_per_page' => '-1',
-
     );
     $cityPosts = new WP_Query( $query_array );
     if ( $cityPosts->have_posts() ):
         while ( $cityPosts->have_posts() ): $cityPosts->the_post();
             $post_pay_id = get_the_ID();
             $title = get_the_title();
-$title = str_replace(' ', '+', $title);
+            $title = str_replace(' ', '+', $title);
             $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title.'&sensor=false&language=ru');
             $response = json_decode($response);
             $lat = $response->results[0]->geometry->location->lat;
             $lng = $response->results[0]->geometry->location->lng;
             $location = array(
-                'lat' => $lat,
-                'lng' => $lng,
-                'city' => $title,
+                'lat'   => $lat,
+                'lng'   => $lng,
+                'city'  => $title,
             );
             $cityArray[] = $location;
         endwhile; endif;
 
-        return $cityArray;
+    return $cityArray;
 }
+
+function getMenuItem(){
+    $menuItems = array();
+    $terms = get_terms( array(
+        'taxonomy'      => array( 'feature' ),
+        'orderby'       => 'term_order',
+        'order'         => 'ASC',
+        'hide_empty'    => false,
+        'object_ids'    => null, //
+    ) );
+
+    if($terms){
+        foreach ($terms as $term){
+            $id_cat = $term->term_id;
+            $categoryName = $term->name;
+            $menu['category'] = $categoryName;
+//            $menuItems[] = $categoryName;
+                $query_array = array(
+                    'post_type' => 'city',
+                    'post_status' => 'publish',
+                    'posts_per_page' => '-1',
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'feature',
+                            'field' => 'id',
+                            'terms' => $id_cat
+                        )
+                    )
+                );
+
+                $cities = new WP_Query( $query_array );
+                $childsItem = array();
+                if ( $cities->have_posts() ):
+                    while ( $cities->have_posts() ): $cities->the_post();
+                        $post_pay_id = get_the_ID();
+                        $title = get_the_title();
+                        $valueArray = array('name'=> $title, 'cityId' => $post_pay_id);
+                        $childsItem[] =  $valueArray;
+
+                    endwhile;
+                endif;
+            $menu['child'] = $childsItem;
+            $menuItems[] = $menu;
+        }
+    }
+    return $menuItems;
+}
+
+
+/*city popup query*/
+/*ajax news*/
+function cityPopup() {
+    $content = '';
+    if( isset( $_POST['cityId'] ) ) {
+        $cityId = $_POST['cityId'];
+        ob_start();
+       ?>
+        <h3 class="popup-title"><?php echo get_the_title( $cityId ); ?></h3>
+        <div class="city-popup-data">
+    <?php
+            $informations = get_field('information', $cityId);
+            if( $informations ){
+                foreach ( $informations as $inf){
+    ?>
+            <div class="city-popup-pop"><?php echo $inf['title']; ?> <span><?php echo $inf['value']; ?></span></div>
+
+    <?php
+            }
+                }
+
+    ?>
+                </div>
+        <div class="city-popup-main">
+            <div class="city-popup-map">
+                <div class="map-wrapper">
+                    <img src="/wp-content/themes/bondtheme/images/map-img.jpg" alt="map-img">
+                </div>
+            </div>
+            <div class="city-diagram-container">
+                <div class="city-diagram">
+                    <div id="content">
+                        <div id="diagram"></div>
+                    </div>
+                    <div class="get">
+                        <div class="arc">
+                            <span class="text">JavaScript</span>
+                            <input type="hidden" class="percent" value="50" />
+                            <input type="hidden" class="color" value="#00bfd1" />
+                        </div>
+                        <div class="arc"> <!--    Just circle-->
+                            <input type="hidden" class="percent" value="100" />
+                            <input type="hidden" class="color" value="#fff" />
+                        </div>
+                        <div class="arc">
+                            <span class="text">MySQL123123</span>
+                            <input type="hidden" class="percent" value="7.5" />
+                            <input type="hidden" class="color" value="#ff1e7c" />
+                        </div>
+                    </div>
+                </div>
+                <div class="city-features">
+                    <ul>
+        <?php
+        $features = get_field('features_city', $cityId);
+        if( $features ){
+            foreach ( $features as $feature){
+                ?>
+                        <li class="navigation-item"><?php echo $feature['name']; ?></li>
+
+                <?php
+            }
+        }
+
+        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="popup-text">
+            <p>
+           <?php
+                if( get_field('description', $cityId)){
+                    echo get_field('description', $cityId);
+                }
+           ?>
+            </p>
+        </div>
+        <?php
+        $content = ob_get_clean();
+    }
+    echo $content;
+}
+
+add_action('wp_ajax_city-popup', 'cityPopup');
+add_action('wp_ajax_nopriv_city-popup', 'cityPopup');

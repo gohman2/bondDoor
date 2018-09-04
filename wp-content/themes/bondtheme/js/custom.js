@@ -68,6 +68,26 @@
             $('.navigation-sub').fadeOut(150);
             $('.city-popup-box').fadeIn(200);
             initDiagram();
+
+/* ajax query */
+            var ajaxurl = '/wp-admin/admin-ajax.php';
+            var cityId = $(this).attr('data-id');
+
+            var ajaxdata = {
+                action: "city-popup",
+                cityId: cityId
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: ajaxurl,
+                data: ajaxdata,
+                complete: function(response) {
+                    console.log(response.responseText);
+                }
+            });
+
+
         });
         $('.wrapper').on('click', '.popup-close', function () {
             $('.city-popup-box').fadeOut(400);
