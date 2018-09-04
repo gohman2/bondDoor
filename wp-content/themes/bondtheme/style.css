@@ -591,6 +591,7 @@ html, body, .site, .site-content{
     position: absolute;
     left: 0;
     bottom: 0;
+    height: 103%;
 }
 .popup-numbers{
     cursor: pointer;
