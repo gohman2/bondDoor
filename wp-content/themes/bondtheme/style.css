@@ -1022,5 +1022,20 @@ html, body, .site, .site-content{
     .popup-numbers .fingerprint{
         display: block;
     }
-
+    .socials{
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+    }
+    .main-nav{
+        width: 300px;
+        left: 50%;
+        top: 101%;
+        transform: translateY(0);
+        transform: translateX(-50%);
+    }
+    .main-nav.shown {
+        top: calc(100% - 100px);
+        left: 50%;
+    }
 }

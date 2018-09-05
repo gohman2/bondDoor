@@ -2,8 +2,27 @@
 (function($) {
     $(document).ready(function () {
 
+        function initInnerMap( lngVal, latVal ){
+            // Initialize the platform object:
+            var platform = new H.service.Platform({
+                app_id: 'KngCq2F5ZiDAoC5mHcOf',
+                app_code: 'B9eBCS_ZNlw3uV-F8JilqQ',
+            });
+
+            // Obtain the default map types from the platform object
+            var maptypes = platform.createDefaultLayers();
+
+            // Instantiate (and display) a map object:
+            var map = new H.Map(
+                document.getElementById('mapInner'),
+                maptypes.normal.map,
+                {
+                    zoom: 10,
+                    center: { lng: lngVal, lat: latVal }
+                });
+        }
 //Diagram init
-       function initDiagram( initPercent ){
+       function initDiagram( initName, initPercent ){
            $("#diagram").circliful({
                animation: 1,
                animationStep: 5,
@@ -15,42 +34,47 @@
                textColor: '#fffdfe',
                multiPercentage: 1,
                percentages: [
-                   {'percent': 40, 'color': '#00BFD1', 'text': 'bbbb' },
-                   {'percent': 85, 'color': '#FF1E7C' , 'text': 'bbbb2'},
+                   {'percent': initPercent*10, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
+                   {'percent': 0, 'color': '#FF1E7C' , 'text': 'bbbb2'},
                ],
-               replacePercentageByText: 'tretrtre',
-               text: "Sense of humor",
-               textCustom: "7.5"
+
+               text: initName,
+               textCustom: initPercent
 
            });
        }
-       function drowDiagram(initPercent, percent){
+       function drowDiagram(hoverName, hoverPercent, initName, initPercent){
            console.log(typeof percent);
            $('#diagram').find('svg').remove();
            $("#diagram").circliful({
                animation: 1,
                animationStep: 5,
-               iconColor: 'transparent',
                foregroundBorderWidth: 10,
                backgroundBorderWidth: 10,
                textSize: 28,
+               iconColor: 'transparent',
                textStyle: 'font-size: 14px;',
                textColor: '#fffdfe',
                multiPercentage: 1,
                percentages: [
-                   {'percent': 40, 'color': '#00BFD1' },
-                   {'percent': percent, 'color': '#FF1E7C'},
+                   {'percent': initPercent*10, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
+                   {'percent': hoverPercent*10, 'color': '#FF1E7C' , 'text': 'bbbb2'},
                ],
-               replacePercentageByText: '',
-               text: initPercent,
+
+               text: initName,
+               textCustom: initPercent
 
            });
        }
 
 //Diagram hover
-        $('.city-features .navigation-item').hover(function () {
-           let percent = $(this).attr('data-percent');
-           drowDiagram('Handsome/5.5', percent);
+        $('.city-features').on('hover','.navigation-item',function () {
+           let hoverPercent = $(this).attr('data-percent');
+           let hoverName    = '';
+           let initName     = $("#basicFeature").attr("data-startFeture");
+           let initPercent  = $("#basicFeature").attr("data-startScore");
+
+            drowDiagram(hoverName, hoverPercent, initName, initPercent)
         });
 
 //Close main popup
@@ -69,29 +93,47 @@
         });
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
-            // $(this).fadeOut(400);
-            // $('.navigation-sub').fadeOut(150);
 
             $('.city-popup-box').fadeIn(200);
             $('#diagram').find('svg').remove();
-            initDiagram('Handsome 5.5');
+
 
 /* ajax query */
-            var ajaxurl = '/wp-admin/admin-ajax.php';
+            var ajaxurl = myajax.url;
             var cityId = $(this).attr('data-id');
             var featureName = $(this).closest('.navigation-item').children('a').text();
 
             var ajaxdata = {
                 action: "city-popup",
-                cityId: cityId
+                cityId: cityId,
+                startFeture: featureName,
+                nonce_code : myajax.nonce
             };
 
             $.ajax({
                 type: 'POST',
                 url: ajaxurl,
                 data: ajaxdata,
-                complete: function(response) {
-                    // console.log(response.responseText);
+                dataType : "json",
+                complete:function(msg){
+                    var title         = msg.responseJSON.title;
+                    var topContent    = msg.responseJSON.topContent;
+                    var fetureContent = msg.responseJSON.fetureContent;
+                    var description   = msg.responseJSON.description;
+                    var startFeture   = msg.responseJSON.startFeture;
+                    var startScore    = msg.responseJSON.startScore;
+                    var lngVal    = msg.responseJSON.lng;
+                    var latVal    = msg.responseJSON.lat;
+                    $("#mapInner").html('');
+                    initInnerMap( lngVal, latVal );
+                    $(".popup-title").html(title);
+                    $(".city-popup-data").html(topContent);
+                    $(".city-features > ul").html(fetureContent);
+                    $(".popup-text > p").html(description);
+                    $("#basicFeature").attr("data-startFeture", startFeture);
+                    $("#basicFeature").attr("data-startScore", startScore);
+                    initDiagram( startFeture, startScore );
+
                 }
             });
 
