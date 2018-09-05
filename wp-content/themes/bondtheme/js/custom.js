@@ -37,7 +37,7 @@
                    {'percent': initPercent*10, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
                    {'percent': 0, 'color': '#FF1E7C' , 'text': 'bbbb2'},
                ],
-               // replacePercentageByText: 'tretrtre',
+
                text: initName,
                textCustom: initPercent
 
@@ -60,7 +60,7 @@
                    {'percent': initPercent*10, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
                    {'percent': hoverPercent*10, 'color': '#FF1E7C' , 'text': 'bbbb2'},
                ],
-               // replacePercentageByText: 'tretrtre',
+
                text: initName,
                textCustom: initPercent
 
@@ -93,15 +93,13 @@
         });
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
-            // $(this).fadeOut(400);
-            // $('.navigation-sub').fadeOut(150);
 
             $('.city-popup-box').fadeIn(200);
             $('#diagram').find('svg').remove();
-            // initDiagram('Handsome 5.5');
+
 
 /* ajax query */
-            var ajaxurl = '/wp-admin/admin-ajax.php';
+            var ajaxurl = myajax.url;
             var cityId = $(this).attr('data-id');
             var featureName = $(this).closest('.navigation-item').children('a').text();
 
@@ -109,6 +107,7 @@
                 action: "city-popup",
                 cityId: cityId,
                 startFeture: featureName,
+                nonce_code : myajax.nonce
             };
 
             $.ajax({
@@ -117,7 +116,6 @@
                 data: ajaxdata,
                 dataType : "json",
                 complete:function(msg){
-                    console.log(msg.responseJSON);
                     var title         = msg.responseJSON.title;
                     var topContent    = msg.responseJSON.topContent;
                     var fetureContent = msg.responseJSON.fetureContent;

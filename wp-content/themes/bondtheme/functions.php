@@ -126,7 +126,12 @@ function bondtheme_scripts() {
     wp_enqueue_script( 'diagram', get_template_directory_uri() . '/js/jquery.circliful.min.js', array(), '20151215', true );
 //    wp_enqueue_script( 'diagram-init', get_template_directory_uri() . '/js/diagram-init.js', array(), '20151215', true );
     wp_enqueue_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(), '20151215', true );
-
+    wp_localize_script( 'custom-js', 'myajax',
+        array(
+            'url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('myajax-nonce')
+        )
+    );
     wp_enqueue_script( 'bondtheme-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -296,6 +301,7 @@ function getMenuItem(){
 /*city popup query*/
 /*ajax news*/
 function cityPopup() {
+    check_ajax_referer( 'myajax-nonce', 'nonce_code' );
     $content = '';
     $resultArray = array();
     if( isset( $_POST['cityId'] ) ) {
