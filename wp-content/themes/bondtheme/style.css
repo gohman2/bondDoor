@@ -562,6 +562,7 @@ html, body, .site, .site-content{
     align-items: center;
     padding: 20px 0;
     z-index: 99;
+    overflow-y: auto;
     cursor: pointer;
 }
 .popup,
@@ -573,7 +574,11 @@ html, body, .site, .site-content{
     width: 100%;
     padding: 70px 90px 20px 250px;
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
+}
+.popup-content{
+    position: relative;
+    z-index: 1;
 }
 .popup-logo{
     max-height: 122px;
@@ -985,4 +990,37 @@ html, body, .site, .site-content{
 }
 .svg-container{
     height: 240px;
+}
+.popup-numbers .fingerprint{
+    height: 80px;
+    width: auto;
+}
+
+@media (max-width:640px) {
+    .popup, .city-popup{
+        max-width: 300px;
+        width: 300px;
+        padding: 60px 20px 20px 120px;
+    }
+    .popup-logo {
+        max-height: 62px;
+        margin-bottom: 100px;
+    }
+    .popup-bond {
+        left: -83px;
+        height: 105%;
+        max-width: none;
+    }
+    .popup-text{
+        font-size: 14px;
+        text-align: right;
+        margin-bottom: 65px;
+    }
+    .popup-numbers span{
+        display: none;
+    }
+    .popup-numbers .fingerprint{
+        display: block;
+    }
+
 }

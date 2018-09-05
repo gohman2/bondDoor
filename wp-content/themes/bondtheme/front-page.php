@@ -95,6 +95,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi aperiam atque deleniti doloribus ducimus enim error et harum in, ipsum maiores numquam officiis quo quod totam velit voluptates voluptatum ipsum maiores numquam officiis quo quod totam velit voluptates voluptatum?
                 </div>
                 <div class="popup-numbers">
+                    <img src="/wp-content/themes/bondtheme/images/fingerprint.svg" alt="fingerprint" class="fingerprint">
                     <span><img src="/wp-content/themes/bondtheme/images/0.svg" alt="0"></span>
                     <span><img src="/wp-content/themes/bondtheme/images/0.svg" alt="0"></span>
                     <span><img src="/wp-content/themes/bondtheme/images/7.svg" alt="7"></span>
