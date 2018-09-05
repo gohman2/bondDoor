@@ -297,85 +297,52 @@ function getMenuItem(){
 /*ajax news*/
 function cityPopup() {
     $content = '';
+    $resultArray = array();
     if( isset( $_POST['cityId'] ) ) {
         $cityId = $_POST['cityId'];
-        ob_start();
-       ?>
-        <h3 class="popup-title"><?php echo get_the_title( $cityId ); ?></h3>
-        <div class="city-popup-data">
-    <?php
-            $informations = get_field('information', $cityId);
-            if( $informations ){
-                foreach ( $informations as $inf){
-    ?>
-            <div class="city-popup-pop"><?php echo $inf['title']; ?> <span><?php echo $inf['value']; ?></span></div>
-
-    <?php
-            }
-                }
-
-    ?>
-                </div>
-        <div class="city-popup-main">
-            <div class="city-popup-map">
-                <div class="map-wrapper">
-                    <img src="/wp-content/themes/bondtheme/images/map-img.jpg" alt="map-img">
-                </div>
-            </div>
-            <div class="city-diagram-container">
-                <div class="city-diagram">
-                    <div id="content">
-                        <div id="diagram"></div>
-                    </div>
-                    <div class="get">
-                        <div class="arc">
-                            <span class="text">JavaScript</span>
-                            <input type="hidden" class="percent" value="50" />
-                            <input type="hidden" class="color" value="#00bfd1" />
-                        </div>
-                        <div class="arc"> <!--    Just circle-->
-                            <input type="hidden" class="percent" value="100" />
-                            <input type="hidden" class="color" value="#fff" />
-                        </div>
-                        <div class="arc">
-                            <span class="text">MySQL123123</span>
-                            <input type="hidden" class="percent" value="7.5" />
-                            <input type="hidden" class="color" value="#ff1e7c" />
-                        </div>
-                    </div>
-                </div>
-                <div class="city-features">
-                    <ul>
-        <?php
-        $features = get_field('features_city', $cityId);
-        if( $features ){
-            foreach ( $features as $feature){
-                ?>
-                        <li class="navigation-item"><?php echo $feature['name']; ?></li>
-
-                <?php
+        $startFeture = $_POST['startFeture'];
+        $title = get_the_title( $cityId );
+        $title = str_replace(' ', '+', $title);
+        $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title.'&sensor=false&language=ru');
+        $response = json_decode($response);
+        $lat = $response->results[0]->geometry->location->lat;
+        $lng = $response->results[0]->geometry->location->lng;
+        $informations = get_field('information', $cityId);
+        if( $informations ){
+            $infContent = '';
+            /*inf content top popup*/
+            foreach ( $informations as $inf){
+                $infContent .= '<div class="city-popup-info">'.$inf['title'].' <span>'.$inf['value'].'</span></div>';
             }
         }
-
-        ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="popup-text">
-            <p>
-           <?php
-                if( get_field('description', $cityId)){
-                    echo get_field('description', $cityId);
+        $features = get_field('features_city', $cityId);
+        if( $features ){
+            /*feture popup*/
+            $fetureConetnt = '';
+            foreach ( $features as $feature){
+                if($startFeture == $feature['name']){
+                    $startScore = $feature['score'];
+                    continue;
                 }
-           ?>
-            </p>
-        </div>
-        <?php
-        $content = ob_get_clean();
+                $fetureConetnt .= ' <li data-percent="'.$feature['score'].'" class="navigation-item"><span>'.$feature['score'].'</span>'.$feature['name'].'</li>';
+
+            }
+        }
+        if( get_field('description', $cityId)){
+            $description = get_field('description', $cityId);
+        }
+        $resultArray = array('title' => $title, 'topContent' => $infContent, 'fetureContent' => $fetureConetnt, 'description' => $description, 'startFeture'=>$startFeture, 'startScore'=>$startScore, 'lat' => $lat, 'lng' => $lng );
     }
-    echo $content;
+    wp_send_json($resultArray);
+    die();
 }
 
 add_action('wp_ajax_city-popup', 'cityPopup');
 add_action('wp_ajax_nopriv_city-popup', 'cityPopup');
+
+
+if( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page('Main Settings');
+
+}

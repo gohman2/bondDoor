@@ -46,6 +46,7 @@
         <div class="city-popup-wrapper">
             <div class="city-popup">
                 <h3 class="popup-title">Birmingham</h3>
+                <span id="basicFeature" data-startFeture="10" data-startScore="10"></span>
                 <div class="city-popup-data">
                     <div class="city-popup-info">Density <span>3649 km2</span></div>
                     <div class="city-popup-info">Population <span>1086 m</span></div>
@@ -55,7 +56,8 @@
                 <div class="city-popup-main">
                     <div class="city-popup-map">
                         <div class="map-wrapper">
-                            <img src="/wp-content/themes/bondtheme/images/map-img.jpg" alt="map-img">
+                            <div style="width: 550px; height: 240px" id="mapInner"></div>
+<!--                            <img src="/wp-content/themes/bondtheme/images/map-img.jpg" alt="map-img">-->
                         </div>
                     </div>
                     <div class="city-diagram-container">
@@ -64,10 +66,10 @@
                         </div>
                         <div class="city-features">
                             <ul>
-                                <li data-percent="10" class="navigation-item">Handsome</li>
-                                <li data-percent="20" class="navigation-item">Handsome2</li>
-                                <li data-percent="50" class="navigation-item">Handsome3</li>
-                                <li data-percent="90" class="navigation-item">Handsome4</li>
+                                <li data-percent="10" class="navigation-item"><span></span>Handsome</li>
+                                <li data-percent="20" class="navigation-item"><span></span>Handsome2</li>
+                                <li data-percent="50" class="navigation-item"><span></span>Handsome3</li>
+                                <li data-percent="90" class="navigation-item"><span></span>Handsome4</li>
                             </ul>
                         </div>
                     </div>
@@ -92,7 +94,11 @@
             <div class="popup-content">
                 <img src="/wp-content/themes/bondtheme/images/logo.svg" alt="bond next door" class="popup-logo">
                 <div class="popup-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi aperiam atque deleniti doloribus ducimus enim error et harum in, ipsum maiores numquam officiis quo quod totam velit voluptates voluptatum ipsum maiores numquam officiis quo quod totam velit voluptates voluptatum?
+                    <?php
+                        if( get_field('welcome_text', 'options') ){
+                            echo get_field('welcome_text', 'options');
+                        }
+                    ?>
                 </div>
                 <div class="popup-numbers">
                     <span><img src="/wp-content/themes/bondtheme/images/0.svg" alt="0"></span>
