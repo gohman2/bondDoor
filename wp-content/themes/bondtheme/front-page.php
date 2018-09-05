@@ -47,8 +47,10 @@
             <div class="city-popup">
                 <h3 class="popup-title">Birmingham</h3>
                 <div class="city-popup-data">
-                    <div class="city-popup-pop">Population <span>1086 m</span></div>
-                    <div class="city-popup-dest">Density <span>3649 km2</span></div>
+                    <div class="city-popup-info">Density <span>3649 km2</span></div>
+                    <div class="city-popup-info">Population <span>1086 m</span></div>
+                    <div class="city-popup-info">Density <span>3649 km2</span></div>
+                    <div class="city-popup-info">Population <span>1086 m</span></div>
                 </div>
                 <div class="city-popup-main">
                     <div class="city-popup-map">

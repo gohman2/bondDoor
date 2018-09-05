@@ -3,7 +3,7 @@
     $(document).ready(function () {
 
 //Diagram init
-       function initDiagram(){
+       function initDiagram( initPercent ){
            $("#diagram").circliful({
                animation: 1,
                animationStep: 5,
@@ -11,18 +11,21 @@
                backgroundBorderWidth: 10,
                textSize: 28,
                iconColor: 'transparent',
-               textStyle: 'font-size: 12px;',
+               textStyle: 'font-size: 14px;',
                textColor: '#fffdfe',
                multiPercentage: 1,
                percentages: [
-                   {'percent': 40, 'color': '#00BFD1', 'title': 'Gryffindor' },
-                   {'percent': 85, 'color': '#FF1E7C', 'title': 'Ravenclaw' },
+                   {'percent': 40, 'color': '#00BFD1', 'text': 'bbbb' },
+                   {'percent': 85, 'color': '#FF1E7C' , 'text': 'bbbb2'},
                ],
-               replacePercentageByText: 'test',
+               replacePercentageByText: 'tretrtre',
+               text: "Sense of humor",
+               textCustom: "7.5"
 
            });
        }
-       function drowDiagram(percent){
+       function drowDiagram(initPercent, percent){
+           console.log(typeof percent);
            $('#diagram').find('svg').remove();
            $("#diagram").circliful({
                animation: 1,
@@ -31,21 +34,23 @@
                foregroundBorderWidth: 10,
                backgroundBorderWidth: 10,
                textSize: 28,
-               textStyle: 'font-size: 12px;',
+               textStyle: 'font-size: 14px;',
                textColor: '#fffdfe',
                multiPercentage: 1,
                percentages: [
-                   {'percent': 40, 'color': '#00BFD1', 'title': 'Gryffindor' },
-                   {'percent': percent, 'color': '#FF1E7C', 'title': 'Ravenclaw' },
+                   {'percent': 40, 'color': '#00BFD1' },
+                   {'percent': percent, 'color': '#FF1E7C'},
                ],
-               replacePercentageByText: 'test',
+               replacePercentageByText: '',
+               text: initPercent,
+
            });
        }
 
 //Diagram hover
         $('.city-features .navigation-item').hover(function () {
            let percent = $(this).attr('data-percent');
-           drowDiagram(percent);
+           drowDiagram('Handsome/5.5', percent);
         });
 
 //Close main popup
@@ -64,14 +69,17 @@
         });
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
-            $(this).fadeOut(400);
-            $('.navigation-sub').fadeOut(150);
+            // $(this).fadeOut(400);
+            // $('.navigation-sub').fadeOut(150);
+
             $('.city-popup-box').fadeIn(200);
-            initDiagram();
+            $('#diagram').find('svg').remove();
+            initDiagram('Handsome 5.5');
 
 /* ajax query */
             var ajaxurl = '/wp-admin/admin-ajax.php';
             var cityId = $(this).attr('data-id');
+            var featureName = $(this).closest('.navigation-item').children('a').text();
 
             var ajaxdata = {
                 action: "city-popup",
@@ -83,7 +91,7 @@
                 url: ajaxurl,
                 data: ajaxdata,
                 complete: function(response) {
-                    console.log(response.responseText);
+                    // console.log(response.responseText);
                 }
             });
 

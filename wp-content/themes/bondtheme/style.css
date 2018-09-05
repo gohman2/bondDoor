@@ -700,6 +700,7 @@ html, body, .site, .site-content{
 }
 .navigation-city a{
     position: relative;
+    white-space: nowrap;
     padding-left: 20px;
     transition: 0s;
 }
@@ -743,20 +744,22 @@ html, body, .site, .site-content{
 }
 .city-popup-data{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 60px;
+    padding: 0 45px;
     margin: 0 0 20px;
 }
-.city-popup-pop,
-.city-popup-dest{
+.city-popup-info{
     font-family: 'Libre Baskerville', serif;
     font-size: 10px;
     line-height: 12px;
     color: #888b94;
-    max-width: 50%;
+    max-width: 33.3%;
+    min-width: 33.3%;
+    margin: 0 0 15px;
+    padding: 0 15px;
 }
-.city-popup-pop span,
-.city-popup-dest span{
+.city-popup-info span{
     font-size: 16px;
     font-family: 'Gill Sans', sans-serif;
     color: #cacace;
@@ -817,7 +820,7 @@ html, body, .site, .site-content{
     align-items: center;
     justify-content: flex-end;
     position: relative;
-    padding: 0 170px;
+    padding: 0 150px;
     z-index: 20;
 }
 .city-diagram{
@@ -979,4 +982,7 @@ html, body, .site, .site-content{
 .socials a{
     display: inline-block;
     line-height: 1;
+}
+.svg-container{
+    height: 240px;
 }
