@@ -86,9 +86,12 @@
 //Show submenu with cities
         $('.navigation').on('click', '.navigation-item > a', function (e) {
             e.preventDefault();
-            $('.navigation-sub').fadeOut(150);
-            if(($(this).next('.navigation-sub')).is(":hidden")){
-                $(this).next('.navigation-sub').fadeIn(200);
+            // $('.navigation-sub').removeClass('sub-show');
+            if($(this).next('.navigation-sub').hasClass("sub-show")){
+                $('.navigation-sub').removeClass('sub-show');
+            }else{
+                $('.navigation-sub').removeClass('sub-show');
+                $(this).next('.navigation-sub').addClass('sub-show');
             }
         });
 //City popup

@@ -685,7 +685,6 @@ html, body, .site, .site-content{
     background: #535774 url("/wp-content/themes/bondtheme/images/bg-pat.png") repeat;
 }
 .navigation-sub{
-    display: none;
     border-radius: 0 8px 8px 0;
     padding: 30px 10px 30px 15px;
     background: #535774 url("/wp-content/themes/bondtheme/images/bg-pat.png") repeat;
@@ -693,14 +692,21 @@ html, body, .site, .site-content{
     height: 90%;
     top: 5%;
     bottom: 5%;
-    left:100%;
+    left:-100%;
+    opacity: 0;
     box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+    transition: ease-out left 0.4s, ease opacity 0.7s;
     z-index: 5;
+}
+.navigation-sub.sub-show{
+    left: 100%;
+    opacity: 1;
 }
 .navigation-cities{
     list-style: none;
     overflow-y: auto;
     height: 100%;
+    min-width: 160px;
     padding-right: 55px;
 }
 .navigation-city a{
@@ -826,6 +832,7 @@ html, body, .site, .site-content{
     justify-content: flex-end;
     position: relative;
     padding: 0 150px;
+    min-height: 240px;
     z-index: 20;
 }
 .city-diagram{
@@ -879,14 +886,29 @@ html, body, .site, .site-content{
 .city-features li{
     margin: 0!important;
     font-size: 11px;
-    padding: 4px 15px;
+    padding: 2px 15px;
     text-align: right;
     cursor: pointer;
     color: #cacace;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     transition: 0.2s;
 }
 .city-features li:hover{
     color: #ff1e7c;
+}
+.city-features li span{
+    opacity: 0;
+    color: #ff1e7c;
+    margin: 0 15px 0 0;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: normal;
+    transition: 0.2s;
+}
+.city-features li:hover span{
+    opacity: 1;
 }
 .city-popup-map{
     position: absolute;
@@ -1055,15 +1077,18 @@ html, body, .site, .site-content{
         transform: translateY(0);
         transform: translateX(-50%);
         padding-top: 50px;
-        max-height: 90%;
+        max-height: calc(100% - 80px);
     }
     .main-nav.shown {
         top: calc(100% - 110px);
         left: 50%;
     }
     .main-nav.mobile-show{
-        bottom: 0;
-        top: auto;
+        transform: translate(-50%, -100%);
+        margin-top: 110px;
+    }
+    .mobile-show .menu-arrow{
+        transform: rotate(180deg);
     }
     .menu-arrow{
         display: block;
