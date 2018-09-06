@@ -121,7 +121,8 @@ add_action( 'widgets_init', 'bondtheme_widgets_init' );
  */
 function bondtheme_scripts() {
 	wp_enqueue_style( 'bondtheme-style', get_stylesheet_uri() );
-    wp_enqueue_style( 'google_fonts_opensans', "https://fonts.googleapis.com/css?family=Libre+Baskerville");
+//    wp_enqueue_style( 'google_fonts_opensans', "https://fonts.googleapis.com/css?family=Libre+Baskerville");
+    wp_enqueue_style( 'custom_opensans', "https://fonts.googleapis.com/css?family=Open+Sans:300,400");
 	wp_enqueue_script( 'bondtheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
     wp_enqueue_script( 'diagram', get_template_directory_uri() . '/js/jquery.circliful.min.js', array(), '20151215', true );
 //    wp_enqueue_script( 'diagram-init', get_template_directory_uri() . '/js/diagram-init.js', array(), '20151215', true );
@@ -308,8 +309,8 @@ function cityPopup() {
         $cityId = $_POST['cityId'];
         $startFeture = $_POST['startFeture'];
         $title = get_the_title( $cityId );
-        $title = str_replace(' ', '+', $title);
-        $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title.'&sensor=false&language=ru');
+        $title2 = str_replace(' ', '+', $title);
+        $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title2.'&sensor=false&language=ru');
         $response = json_decode($response);
         $lat = $response->results[0]->geometry->location->lat;
         $lng = $response->results[0]->geometry->location->lng;

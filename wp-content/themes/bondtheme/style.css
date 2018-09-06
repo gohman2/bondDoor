@@ -678,7 +678,6 @@ html, body, .site, .site-content{
     padding: 5px;
     width: 100%;
     border-radius: 4px;
-    transition: 0.2s;
     z-index: 10;
 }
 .navigation-item > a:hover{
