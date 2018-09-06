@@ -994,8 +994,29 @@ html, body, .site, .site-content{
 .popup-numbers .fingerprint{
     height: 80px;
     width: auto;
+    display: none;
 }
-
+.menu-arrow{
+    display: none;
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+.menu-arrow:before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -7px 0 0 -7px;
+    width: 14px;
+    height: 14px;
+    background: url(/wp-content/themes/bondtheme/images/popup-arrow.png) no-repeat 50%;
+    background-size: contain;
+    transition: 0.3s;
+}
 @media (max-width:640px) {
     .popup, .city-popup{
         max-width: 300px;
@@ -1033,9 +1054,21 @@ html, body, .site, .site-content{
         top: 101%;
         transform: translateY(0);
         transform: translateX(-50%);
+        padding-top: 50px;
+        max-height: 90%;
     }
     .main-nav.shown {
-        top: calc(100% - 100px);
+        top: calc(100% - 110px);
         left: 50%;
+    }
+    .main-nav.mobile-show{
+        bottom: 0;
+        top: auto;
+    }
+    .menu-arrow{
+        display: block;
+    }
+    .logo{
+        height: 45px;
     }
 }

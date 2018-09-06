@@ -8,6 +8,7 @@
     <div id="map" style='width: 100vw; height: 100vh;' />
     <?php if( !empty( $menuItems ) ){ ?>
     <div class="main-nav">
+        <div class="menu-arrow"></div>
         <div class="logo">
             <img src="/wp-content/themes/bondtheme/images/logo.svg" alt="Bond next door">
         </div>
