@@ -37,9 +37,10 @@
 
     <div class="socials">
         <ul>
-            <li><a href="#"><img src="/wp-content/themes/bondtheme/images/facebook.svg" alt="facebook"></a></li>
-            <li><a href="#"><img src="/wp-content/themes/bondtheme/images/twitter.svg" alt="twitter"></a></li>
-            <li><a href="#"><img src="/wp-content/themes/bondtheme/images/information.svg" alt="information"></a></li>
+            <?php $social = get_field('social_link', 'options');	 ?>
+            <li><a href="<?php echo !empty($social['facebook']) ? $social['facebook'] : "#" ; ?>"><img src="/wp-content/themes/bondtheme/images/facebook.svg" alt="facebook"></a></li>
+            <li><a href="<?php echo !empty($social['twitter']) ? $social['twitter'] : "#" ; ?>"><img src="/wp-content/themes/bondtheme/images/twitter.svg" alt="twitter"></a></li>
+            <li><a href="<?php echo !empty($social['information']) ? $social['information'] : "#" ; ?>"><img src="/wp-content/themes/bondtheme/images/information.svg" alt="information"></a></li>
         </ul>
     </div>
     <div class="city-popup-box">
