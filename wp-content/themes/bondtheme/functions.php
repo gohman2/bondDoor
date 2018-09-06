@@ -308,8 +308,8 @@ function cityPopup() {
         $cityId = $_POST['cityId'];
         $startFeture = $_POST['startFeture'];
         $title = get_the_title( $cityId );
-        $title = str_replace(' ', '+', $title);
-        $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title.'&sensor=false&language=ru');
+        $title2 = str_replace(' ', '+', $title);
+        $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title2.'&sensor=false&language=ru');
         $response = json_decode($response);
         $lat = $response->results[0]->geometry->location->lat;
         $lng = $response->results[0]->geometry->location->lng;
