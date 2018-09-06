@@ -84,12 +84,19 @@
 
 
 
+
+
     var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
     // Create the default UI components
     var ui = H.ui.UI.createDefault(map, defaultLayers);
     // Now use the map as required...
     // addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
-    addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
+    var mapEvents =   addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
+    // Add event listeners:
+    map.addEventListener('tap', function(evt) {
+        // Log 'tap' and 'mouse' events:
+        console.log(evt.type, evt.currentPointer.type, evt.target);
+    });
 </script>
 <?php wp_footer(); ?>
 </body>
