@@ -143,5 +143,10 @@
             $('.city-popup-box').fadeOut(400);
             $('#diagram').find('svg').remove();
         });
+        
+    //Show mobile menu
+        $('.main-nav').on('click', '.menu-arrow', function () {
+            $('.main-nav').toggleClass('mobile-show');
+        })
     });
 })(jQuery);
