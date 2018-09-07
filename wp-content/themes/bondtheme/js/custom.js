@@ -190,6 +190,7 @@ function eventMapAjax( currentCity , $) {
             var startScore    = msg.responseJSON.startScore;
             var lngVal    = msg.responseJSON.lng;
             var latVal    = msg.responseJSON.lat;
+            $('.city-popup-box').fadeIn(200);
             $("#mapInner").html('');
 
                 // initInnerMap( lngVal, latVal );
@@ -217,7 +218,7 @@ function eventMapAjax( currentCity , $) {
             $("#basicFeature").attr("data-startFeture", startFeture);
             $("#basicFeature").attr("data-startScore", startScore);
             initDiagramEvent( startFeture, startScore );
-            $('.city-popup-box').fadeIn(200);
+
         }
     });
 }
