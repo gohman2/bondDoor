@@ -133,6 +133,7 @@
                     var startScore    = msg.responseJSON.startScore;
                     var lngVal    = msg.responseJSON.lng;
                     var latVal    = msg.responseJSON.lat;
+                    $('.city-popup-box').fadeIn(200);
                     $("#mapInner").html('');
                     initInnerMap( lngVal, latVal );
                     $(".popup-title").html(title);
@@ -142,7 +143,7 @@
                     $("#basicFeature").attr("data-startFeture", startFeture);
                     $("#basicFeature").attr("data-startScore", startScore);
                     initDiagram( startFeture, startScore );
-                    $('.city-popup-box').fadeIn(200);
+
                 }
             });
 
