@@ -33,6 +33,7 @@
                 {lat:jsonLocation[i]['lat'], lng:jsonLocation[i]['lng'] },
                 {icon: mapIcon}
             );
+            Marker.setData(jsonLocation[i]['city']+'/'+jsonLocation[i]['cityID']);
             map.addObject(Marker);
         }
 
@@ -93,9 +94,12 @@
     // addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
     var mapEvents =   addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
     // Add event listeners:
-    map.object.addEventListener('tap', function(evt) {
+    map.addEventListener('tap', function(evt) {
         // Log 'tap' and 'mouse' events:
-        console.log(evt.type, evt.currentPointer.type, evt.currentTarget.getId);
+        // console.log(evt.type, evt.currentPointer.type, evt.target.getData());
+        var currentCity = evt.target.getData();
+        eventMapAjax( currentCity , jQuery);
+
     });
 </script>
 <?php wp_footer(); ?>

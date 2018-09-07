@@ -47,13 +47,10 @@
     <div class="city-popup-box">
         <div class="city-popup-wrapper">
             <div class="city-popup">
-                <h3 class="popup-title">Birmingham</h3>
-                <span id="basicFeature" data-startFeture="10" data-startScore="10"></span>
+                <h3 class="popup-title"></h3>
+                <span id="basicFeature" data-startFeture="" data-startScore=""></span>
                 <div class="city-popup-data">
-                    <div class="city-popup-info">Density <span>3649 km2</span></div>
-                    <div class="city-popup-info">Population <span>1086 m</span></div>
-                    <div class="city-popup-info">Density <span>3649 km2</span></div>
-                    <div class="city-popup-info">Population <span>1086 m</span></div>
+
                 </div>
                 <div class="city-popup-main">
                     <div class="city-popup-map">
@@ -68,20 +65,14 @@
                         </div>
                         <div class="city-features">
                             <ul>
-                                <li data-percent="10" class="navigation-item"><span></span>Handsome</li>
-                                <li data-percent="20" class="navigation-item"><span></span>Handsome2</li>
-                                <li data-percent="50" class="navigation-item"><span></span>Handsome3</li>
-                                <li data-percent="90" class="navigation-item"><span></span>Handsome4</li>
+
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="popup-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore dolorum nam numquam repellat sit temporibus. Aperiam deleniti doloremque ducimus et exercitationem harum, id illo, incidunt perferendis quasi sunt voluptatibus.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore dolorum nam numquam repellat sit temporibus. Aperiam deleniti doloremque ducimus et exercitationem harum, id illo, incidunt perferendis quasi sunt voluptatibus.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore dolorum nam numquam repellat sit temporibus. Aperiam deleniti doloremque ducimus et exercitationem harum, id illo, incidunt perferendis quasi sunt voluptatibus.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore dolorum nam numquam repellat sit temporibus. Aperiam deleniti doloremque ducimus et exercitationem harum, id illo, incidunt perferendis quasi sunt voluptatibus.
+
                     </p>
                 </div>
                 <div class="popup-close">
