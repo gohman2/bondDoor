@@ -66,6 +66,17 @@
 
            });
        }
+    //Close city-popup
+        $('.wrapper').on('click', '.popup-close', function () {
+            $('.city-popup-box').fadeOut(400);
+            $('#diagram').find('svg').remove();
+            $('.main-nav, .socials').addClass('shown');
+        });
+
+    //Show mobile menu
+        $('.main-nav').on('click', '.menu-arrow', function () {
+            $('.main-nav').toggleClass('mobile-show');
+        });
 
 //Diagram hover
         $('.city-features').on('hover','.navigation-item',function () {
@@ -96,10 +107,17 @@
         });
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
-
-            $('.city-popup-box').fadeIn(200);
-            $('#diagram').find('svg').remove();
-
+            var ww = $(window).width();
+            if(ww < 641){
+                $('.navigation-sub').removeClass('sub-show');
+                $('.main-nav').removeClass('mobile-show');
+                $('.main-nav').removeClass('shown');
+                $('.city-popup-box').fadeIn(200);
+                $('#diagram').find('svg').remove();
+            } else {
+                $('.city-popup-box').fadeIn(200);
+                $('#diagram').find('svg').remove();
+            }
 
 /* ajax query */
             var ajaxurl = myajax.url;
@@ -142,14 +160,6 @@
 
 
         });
-        $('.wrapper').on('click', '.popup-close', function () {
-            $('.city-popup-box').fadeOut(400);
-            $('#diagram').find('svg').remove();
-        });
-        
-    //Show mobile menu
-        $('.main-nav').on('click', '.menu-arrow', function () {
-            $('.main-nav').toggleClass('mobile-show');
-        })
+
     });
 })(jQuery);
