@@ -103,7 +103,7 @@
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
 
-            $('.city-popup-box').fadeIn(200);
+
             $('#diagram').find('svg').remove();
 
 
@@ -142,7 +142,7 @@
                     $("#basicFeature").attr("data-startFeture", startFeture);
                     $("#basicFeature").attr("data-startScore", startScore);
                     initDiagram( startFeture, startScore );
-
+                    $('.city-popup-box').fadeIn(200);
                 }
             });
 
@@ -160,7 +160,7 @@
     });
 })(jQuery);
 function eventMapAjax( currentCity , $) {
-    $('.city-popup-box').fadeIn(200);
+
     $('#diagram').find('svg').remove();
     var eventCiryArray = currentCity.split("/");
 
@@ -217,7 +217,7 @@ function eventMapAjax( currentCity , $) {
             $("#basicFeature").attr("data-startFeture", startFeture);
             $("#basicFeature").attr("data-startScore", startScore);
             initDiagramEvent( startFeture, startScore );
-
+            $('.city-popup-box').fadeIn(200);
         }
     });
 }
