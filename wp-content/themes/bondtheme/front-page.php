@@ -5,7 +5,7 @@
 ?>
 <div class="wrapper">
 
-    <div id="map" style='width: 100vw; height: 100vh;' />
+    <div id="map" style='width: 100vw; height: 100vh;'></div>
     <?php if( !empty( $menuItems ) ){ ?>
     <div class="main-nav">
         <div class="menu-arrow"></div>
@@ -51,11 +51,11 @@
                     <h3 class="popup-title"></h3>
                     <span id="basicFeature" data-startFeture="" data-startScore=""></span>
                     <div class="city-popup-data"></div>
+                </div>
                 <div class="city-popup-main">
                     <div class="city-popup-map">
                         <div class="map-wrapper">
                             <div style="width: 550px; height: 240px" id="mapInner"></div>
-<!--                            <img src="/wp-content/themes/bondtheme/images/map-img.jpg" alt="map-img">-->
                         </div>
                     </div>
                     <div class="city-diagram-container">
@@ -63,16 +63,12 @@
                             <div id="diagram"></div>
                         </div>
                         <div class="city-features">
-                            <ul>
-
-                            </ul>
+                            <ul></ul>
                         </div>
                     </div>
                 </div>
                 <div class="popup-text">
-                    <p>
-
-                    </p>
+                    <p></p>
                 </div>
                 <div class="popup-close">
                     <img src="/wp-content/themes/bondtheme/images/close.svg" alt="close popup">
@@ -100,6 +96,12 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="preloader-wrapper">
+    <div class="preloader">
+        <img src="/wp-content/themes/bondtheme/images/preloader.svg" alt="Loading..." class="loader">
     </div>
 </div>
 <?php

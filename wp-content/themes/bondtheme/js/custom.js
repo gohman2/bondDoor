@@ -54,7 +54,7 @@
            $('#diagram').find('svg').remove();
            $("#diagram").circliful({
                animation: 1,
-               animationStep: 5,
+               animationStep: 10,
                foregroundBorderWidth: 10,
                backgroundBorderWidth: 10,
                textSize: 28,
@@ -141,6 +141,9 @@
                 url: ajaxurl,
                 data: ajaxdata,
                 dataType : "json",
+                beforeSend: function(){
+                    $('.preloader-wrapper').show();
+                },
                 complete:function(msg){
                     var title         = msg.responseJSON.title;
                     var topContent    = msg.responseJSON.topContent;
@@ -160,7 +163,7 @@
                     $("#basicFeature").attr("data-startFeture", startFeture);
                     $("#basicFeature").attr("data-startScore", startScore);
                     initDiagram( startFeture, startScore );
-
+                    $('.preloader-wrapper').hide();
                 }
             });
 
@@ -170,6 +173,10 @@
     });
 })(jQuery);
 function eventMapAjax( currentCity , $) {
+
+    $('.navigation-sub').removeClass('sub-show');
+    $('.main-nav').removeClass('mobile-show');
+    $('.main-nav').removeClass('shown');
 
     $('#diagram').find('svg').remove();
     var eventCiryArray = currentCity.split("/");
@@ -191,6 +198,9 @@ function eventMapAjax( currentCity , $) {
         url: ajaxurl,
         data: ajaxdata,
         dataType : "json",
+        beforeSend: function(){
+            $('.preloader-wrapper').show();
+        },
         complete:function(msg){
             var title         = msg.responseJSON.title;
             var topContent    = msg.responseJSON.topContent;
@@ -228,7 +238,7 @@ function eventMapAjax( currentCity , $) {
             $("#basicFeature").attr("data-startFeture", startFeture);
             $("#basicFeature").attr("data-startScore", startScore);
             initDiagramEvent( startFeture, startScore );
-
+            $('.preloader-wrapper').hide();
         }
     });
 }
