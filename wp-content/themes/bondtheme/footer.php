@@ -33,6 +33,7 @@
                 {lat:jsonLocation[i]['lat'], lng:jsonLocation[i]['lng'] },
                 {icon: mapIcon}
             );
+            Marker.setData(jsonLocation[i]['city']+'/'+jsonLocation[i]['cityID']);
             map.addObject(Marker);
         }
 
@@ -44,7 +45,7 @@
     var platform = new H.service.Platform({
         app_id: 'KngCq2F5ZiDAoC5mHcOf',
         app_code: 'B9eBCS_ZNlw3uV-F8JilqQ',
-        useHTTPS: true
+        useHTTPS: false
     });
     var pixelRatio = window.devicePixelRatio || 1;
     var defaultLayers = platform.createDefaultLayers({
@@ -93,10 +94,36 @@
     // addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
     var mapEvents =   addMarkersToMap( map.setBaseLayer(fleetStyleLayer));
     // Add event listeners:
-    map.object.addEventListener('tap', function(evt) {
+    map.addEventListener('tap', function(evt) {
         // Log 'tap' and 'mouse' events:
-        console.log(evt.type, evt.currentPointer.type, evt.currentTarget.getId);
+        // console.log(evt.type, evt.currentPointer.type, evt.target.getData());
+        map.getElement().style.cursor = (evt.target === map) ? '' : 'pointer';
+        var currentCity = evt.target.getData();
+        eventMapAjax( currentCity , jQuery);
+
     });
+    map.addEventListener('pointermove', function(evt) {
+        // Log 'tap' and 'mouse' events:
+        // console.log(evt.type, evt.currentPointer.type, evt.target.getData());
+        map.getElement().style.cursor = (evt.target === map) ? '' : 'pointer';
+       /* if(evt.target !== map){
+            var bubble =  new H.ui.InfoBubble(evt.target.getPosition(), {
+                // read custom data
+                content: evt.target.getData()
+            });
+            // show info bubble
+
+            // ui.addBubble(bubble);
+
+        }else{
+            ui.removeBubble(bubble);
+        }*/
+
+
+
+
+    });
+
 </script>
 <?php wp_footer(); ?>
 </body>

@@ -233,7 +233,7 @@ function getCity(){
     $cityPosts = new WP_Query( $query_array );
     if ( $cityPosts->have_posts() ):
         while ( $cityPosts->have_posts() ): $cityPosts->the_post();
-            $post_pay_id = get_the_ID();
+            $cityId = get_the_ID();
             $title = get_the_title();
             $title = str_replace(' ', '+', $title);
             $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title.'&sensor=false&language=ru');
@@ -244,6 +244,7 @@ function getCity(){
                 'lat'   => $lat,
                 'lng'   => $lng,
                 'city'  => $title,
+                'cityID'  => $cityId,
             );
             $cityArray[] = $location;
         endwhile; endif;
