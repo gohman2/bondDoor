@@ -23,6 +23,13 @@
         }
 //Diagram init
        function initDiagram( initName, initPercent, animationStatus ){
+
+           if(typeof initPercent === "undefined"){
+               initPercent = 0;
+               var coefficient = 0;
+           }else{
+               var coefficient = 10;
+           }
            $("#diagram").circliful({
                animation: animationStatus,
                animationStep: 10,
@@ -34,7 +41,7 @@
                textColor: '#fffdfe',
                multiPercentage: 1,
                percentages: [
-                   {'percent': initPercent*10, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
+                   {'percent': initPercent * coefficient, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
                    {'percent': 0, 'color': '#FF1E7C' , 'text': 'bbbb2'},
                ],
 

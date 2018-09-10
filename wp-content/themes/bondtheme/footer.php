@@ -74,8 +74,8 @@
     //Step 2: initialize a map - this map is centered over Europe
     var map = new H.Map(document.getElementById('map'),
         defaultLayers.normal.map,{
-            center: {lat:50, lng:5},
-            zoom: 5,
+            center: {lat:52.3555177, lng:-1.1743197},
+            zoom: 6,
             pixelRatio: pixelRatio,
 
 
