@@ -22,10 +22,10 @@
                 });
         }
 //Diagram init
-       function initDiagram( initName, initPercent ){
+       function initDiagram( initName, initPercent, animationStatus ){
            $("#diagram").circliful({
-               animation: 1,
-               animationStep: 5,
+               animation: animationStatus,
+               animationStep: 10,
                foregroundBorderWidth: 10,
                backgroundBorderWidth: 10,
                textSize: 28,
@@ -63,8 +63,8 @@
                textColor: '#fffdfe',
                multiPercentage: 1,
                percentages: [
-                   {'percent': initPercent*coefficient, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
-                   {'percent': hoverPercent*10, 'color': '#FF1E7C' , 'text': 'bbbb2'},
+                   {'percent': initPercent*coefficient, 'color': '#00BFD1' }, /*basic*/
+                   {'percent': hoverPercent*10, 'color': '#FF1E7C' },
                ],
 
                text: initName,
@@ -92,6 +92,12 @@
            let initPercent  = $("#basicFeature").attr("data-startScore");
 
             drowDiagram(hoverName, hoverPercent, initName, initPercent)
+        });
+        $('.city-features').on('mouseout','.navigation-item',function () {
+            let initName     = $("#basicFeature").attr("data-startFeture");
+            let initPercent  = $("#basicFeature").attr("data-startScore");
+            $('#diagram').find('svg').remove();
+            initDiagram( initName, initPercent , 0);
         });
 
 //Close main popup
@@ -162,7 +168,7 @@
                     $(".popup-text > p").html(description);
                     $("#basicFeature").attr("data-startFeture", startFeture);
                     $("#basicFeature").attr("data-startScore", startScore);
-                    initDiagram( startFeture, startScore );
+                    initDiagram( startFeture, startScore, 1 );
                     $('.preloader-wrapper').hide();
                 }
             });
@@ -248,7 +254,7 @@ function eventMapAjax( currentCity , $) {
 function initDiagramEvent( initName, initPercent ){
     jQuery("#diagram").circliful({
         animation: 1,
-        animationStep: 5,
+        animationStep: 10,
         foregroundBorderWidth: 10,
         backgroundBorderWidth: 10,
         textSize: 28,
