@@ -781,9 +781,11 @@ html, body, .site, .site-content{
     border-radius: 50%;
     margin-top: -2px;
 }
-.navigation-city a:hover{
+.navigation-city a:hover,
+.navigation-city .active{
     font-weight: normal;
 }
+.navigation-city .active:before,
 .navigation-city a:hover:before{
     width: 6px;
     height: 6px;

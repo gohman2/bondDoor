@@ -75,6 +75,7 @@
     //Close city-popup
         $('.wrapper').on('click', '.popup-close', function () {
             $('.city-popup-box').fadeOut(400);
+            $('.navigation-city .active').removeClass('active');
             $('#diagram').find('svg').remove();
             $('.main-nav, .socials').addClass('shown');
         });
@@ -109,7 +110,7 @@
 //Show submenu with cities
         $('.navigation').on('click', '.navigation-item > a', function (e) {
             e.preventDefault();
-            // $('.navigation-sub').removeClass('sub-show');
+            $('.navigation-city .active').removeClass('active');
             if($(this).next('.navigation-sub').hasClass("sub-show")){
                 $('.navigation-sub').removeClass('sub-show');
             }else{
@@ -127,6 +128,7 @@
                 $('.city-popup-box').fadeIn(200);
                 $('#diagram').find('svg').remove();
             } else {
+                $(this).addClass('active');
                 $('#diagram').find('svg').remove();
             }
 
