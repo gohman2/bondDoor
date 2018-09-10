@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="popup-text">
-                    <p></p>
+                    <div></div>
                 </div>
                 <div class="popup-close">
                     <img src="/wp-content/themes/bondtheme/images/close.svg" alt="close popup">

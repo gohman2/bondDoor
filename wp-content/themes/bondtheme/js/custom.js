@@ -93,7 +93,7 @@
 
             drowDiagram(hoverName, hoverPercent, initName, initPercent)
         });
-        $('.city-features').on('mouseout','.navigation-item',function () {
+        $('.city-features').on('mouseleave','.navigation-item',function () {
             let initName     = $("#basicFeature").attr("data-startFeture");
             let initPercent  = $("#basicFeature").attr("data-startScore");
             $('#diagram').find('svg').remove();
@@ -123,7 +123,7 @@
             if(ww < 641){
                 $('.navigation-sub').removeClass('sub-show');
                 $('.main-nav').removeClass('mobile-show');
-                $('.main-nav').removeClass('shown');
+                $('.main-nav, .socials').removeClass('shown');
                 $('.city-popup-box').fadeIn(200);
                 $('#diagram').find('svg').remove();
             } else {
@@ -165,7 +165,7 @@
                     $(".popup-title").html(title);
                     $(".city-popup-data").html(topContent);
                     $(".city-features > ul").html(fetureContent);
-                    $(".popup-text > p").html(description);
+                    $(".popup-text > div").html(description);
                     $("#basicFeature").attr("data-startFeture", startFeture);
                     $("#basicFeature").attr("data-startScore", startScore);
                     initDiagram( startFeture, startScore, 1 );
