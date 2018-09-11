@@ -11,6 +11,9 @@
 
 ?>
 <?php
+if( !is_404() ) {
+
+
     $getCityLocation = getCity();
     $jsonLocation    = json_encode($getCityLocation);
 ?>
@@ -118,9 +121,16 @@
         }else{
             ui.removeBubble(bubble);
         }*/
+
+
+
+
     });
 
-</script>
-<?php wp_footer(); ?>
+    </script>
+    <?php
+}
+
+wp_footer(); ?>
 </body>
 </html>
