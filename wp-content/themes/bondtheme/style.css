@@ -1164,7 +1164,7 @@ html, body, .site, .site-content{
     -o-transition: 0.3s;
     transition: 0.3s;
 }
-@media (max-width:640px) {
+@media (max-width:768px) {
     .popup, .city-popup{
         max-width: 300px;
         width: 300px;

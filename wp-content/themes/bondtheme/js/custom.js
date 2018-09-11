@@ -128,13 +128,14 @@
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
             var ww = $(window).width();
-            if(ww < 641){
-                $('.navigation-sub').removeClass('sub-show');
+            if(ww < 769){
                 $('.main-nav').removeClass('mobile-show');
                 $('.main-nav, .socials').removeClass('shown');
                 $('.city-popup-box').fadeIn(200);
                 $('#diagram').find('svg').remove();
-            } else {
+            } else if(ww < 1025){
+                $('.navigation-sub').removeClass('sub-show');
+            }else {
                 $(this).addClass('active');
                 $('#diagram').find('svg').remove();
             }
@@ -191,7 +192,7 @@ function eventMapAjax( currentCity , $) {
 
     $('.navigation-sub').removeClass('sub-show');
     $('.main-nav').removeClass('mobile-show');
-    $('.main-nav').removeClass('shown');
+    $('.main-nav, .socials').removeClass('shown');
 
     $('#diagram').find('svg').remove();
     var eventCiryArray = currentCity.split("/");
