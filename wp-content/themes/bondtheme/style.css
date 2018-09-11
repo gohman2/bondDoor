@@ -1164,6 +1164,35 @@ html, body, .site, .site-content{
     -o-transition: 0.3s;
     transition: 0.3s;
 }
+.error404{
+    background: url(/wp-content/themes/bondtheme/images/popup-bg.svg) 0px 0px / cover no-repeat rgb(54, 57, 77);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.logo404{
+    max-width: 250px;
+    margin: 0 0 40px;
+    display: inline-block;
+}
+.title404{
+    font-size: 36px;
+    margin: 0 0 20px;
+}
+.numbers404{
+    margin: 0 0 20px;
+}
+.error-404 p{
+    font-size: 16px;
+}
+.numbers404 img{
+    height: 60px;
+}
+.numbers404 span{
+    padding: 10px 18px;
+    margin: 0 5px;
+}
 @media (max-width:768px) {
     .popup, .city-popup{
         max-width: 300px;
@@ -1190,6 +1219,9 @@ html, body, .site, .site-content{
     }
     .popup-numbers span{
         display: none;
+    }
+    .popup-numbers.numbers404 span{
+        display: inline-block;
     }
     .popup-numbers .fingerprint{
         display: block;
