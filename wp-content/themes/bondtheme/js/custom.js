@@ -127,13 +127,13 @@
         });
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
+            $('#diagram').find('svg').remove();
             var ww = $(window).width();
-            if(ww < 769){
+            if(ww < 891){
                 $('.main-nav').removeClass('mobile-show');
                 $('.main-nav, .socials').removeClass('shown');
                 $('.city-popup-box').fadeIn(200);
-                $('#diagram').find('svg').remove();
-            } else if(ww < 1025){
+            } else if(ww < 1270){
                 $('.navigation-sub').removeClass('sub-show');
             }else {
                 $(this).addClass('active');

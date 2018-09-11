@@ -1193,7 +1193,7 @@ html, body, .site, .site-content{
     padding: 10px 18px;
     margin: 0 5px;
 }
-@media (max-width:768px) {
+@media (max-width:890px) {
     .popup, .city-popup{
         max-width: 300px;
         width: 300px;

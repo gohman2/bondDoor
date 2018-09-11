@@ -118,10 +118,6 @@
         }else{
             ui.removeBubble(bubble);
         }*/
-
-
-
-
     });
 
 </script>
