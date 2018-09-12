@@ -83,6 +83,7 @@
         $('.wrapper').on('click', '.popup-close', function () {
             $('.city-popup-box').fadeOut(400);
             $('.navigation-city .active').removeClass('active');
+            $('.navigation-sub').removeClass('sub-show');
             $('#diagram').find('svg').remove();
             $('.main-nav, .socials').addClass('shown');
         });
