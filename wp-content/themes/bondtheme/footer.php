@@ -101,8 +101,11 @@ if( !is_404() ) {
         // Log 'tap' and 'mouse' events:
         // console.log(evt.type, evt.currentPointer.type, evt.target.getData());
         map.getElement().style.cursor = (evt.target === map) ? '' : 'pointer';
-        var currentCity = evt.target.getData();
-        eventMapAjax( currentCity , jQuery);
+        if( evt.target !== map  ){
+            var currentCity = evt.target.getData();
+            eventMapAjax( currentCity , jQuery);
+        }
+
 
     });
     map.addEventListener('pointermove', function(evt) {

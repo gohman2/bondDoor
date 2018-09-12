@@ -311,7 +311,7 @@ function cityPopup() {
         $startFeture = $_POST['startFeture'];
         $title = get_the_title( $cityId );
         $title2 = str_replace(' ', '+', $title);
-        $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title2.'&sensor=false&language=ru');
+        $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title2.'&region=gb&sensor=false&language=ru');
         $response = json_decode($response);
         $lat = $response->results[0]->geometry->location->lat;
         $lng = $response->results[0]->geometry->location->lng;
