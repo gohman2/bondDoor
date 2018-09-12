@@ -25,7 +25,7 @@
        function initDiagram( initName, initPercent, animationStatus ){
 
            if(typeof initPercent === "undefined"){
-               initPercent = 0;
+               initPercent = "";
                var coefficient = 0;
            }else{
                var coefficient = 10;
@@ -51,9 +51,17 @@
            });
        }
        function drowDiagram(hoverName, hoverPercent, initName, initPercent){
-
+console.log(hoverName);
+console.log(hoverPercent);
+console.log(initName);
+console.log(initPercent);
            if(typeof initPercent == "undefined"){
-               initPercent = hoverPercent;
+               if(initName == ""){
+                   initPercent = hoverPercent;
+               }else{
+                   initPercent = "";
+               }
+
                 var coefficient = 0;
            }else{
                 var coefficient = 10;

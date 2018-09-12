@@ -236,10 +236,10 @@ function getCity(){
             $cityId = get_the_ID();
             $title = get_the_title();
             $title = str_replace(' ', '+', $title);
-            $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title.'&region=gb&sensor=false&language=ru');
+            $response = file_get_contents('https://geocoder.api.here.com/6.2/geocode.json?app_id=KngCq2F5ZiDAoC5mHcOf&app_code=B9eBCS_ZNlw3uV-F8JilqQ&city='.$title.'');
             $response = json_decode($response);
-            $lat = $response->results[0]->geometry->location->lat;
-            $lng = $response->results[0]->geometry->location->lng;
+            $lat = $response->Response->View[0]->Result[0]->Location->DisplayPosition->Latitude;
+            $lng = $response->Response->View[0]->Result[0]->Location->DisplayPosition->Longitude;
             $location = array(
                 'lat'   => $lat,
                 'lng'   => $lng,
@@ -311,10 +311,10 @@ function cityPopup() {
         $startFeture = $_POST['startFeture'];
         $title = get_the_title( $cityId );
         $title2 = str_replace(' ', '+', $title);
-        $response = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$title2.'&region=gb&sensor=false&language=ru');
+        $response = file_get_contents('https://geocoder.api.here.com/6.2/geocode.json?app_id=KngCq2F5ZiDAoC5mHcOf&app_code=B9eBCS_ZNlw3uV-F8JilqQ&city='.$title.'');
         $response = json_decode($response);
-        $lat = $response->results[0]->geometry->location->lat;
-        $lng = $response->results[0]->geometry->location->lng;
+        $lat = $response->Response->View[0]->Result[0]->Location->DisplayPosition->Latitude;
+        $lng = $response->Response->View[0]->Result[0]->Location->DisplayPosition->Longitude;
         $informations = get_field('information', $cityId);
         if( $informations ){
             $infContent = '';

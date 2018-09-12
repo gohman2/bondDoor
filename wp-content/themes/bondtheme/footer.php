@@ -15,6 +15,9 @@ if( !is_404() ) {
 
 
     $getCityLocation = getCity();
+    echo "<pre>";
+        print_r($getCityLocation);
+    echo "</pre>";
     $jsonLocation    = json_encode($getCityLocation);
 ?>
 <script  type="text/javascript" charset="UTF-8" >
