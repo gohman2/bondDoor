@@ -97,6 +97,7 @@ console.log(initPercent);
             $('.city-popup-box').fadeOut(400);
             $('.navigation-city .active').removeClass('active');
             $('.navigation-sub').removeClass('sub-show');
+            $('.navigation-item > a').removeClass('active-item');
             $('#diagram').find('svg').remove();
             $('.main-nav, .socials').addClass('shown');
         });
