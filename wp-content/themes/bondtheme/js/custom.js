@@ -131,6 +131,8 @@ console.log(initPercent);
 //Show submenu with cities
         $('.navigation').on('click', '.navigation-item > a', function (e) {
             e.preventDefault();
+            $('.navigation-item > a').removeClass('active-item');
+            $(this).addClass('active-item');
             $('.navigation-city .active').removeClass('active');
             if($(this).next('.navigation-sub').hasClass("sub-show")){
                 $('.navigation-sub').removeClass('sub-show');
