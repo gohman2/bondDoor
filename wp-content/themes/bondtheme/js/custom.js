@@ -28,8 +28,15 @@
            if(typeof initPercent === "undefined"){
                initPercent = "";
                var coefficient = 0;
+               var percentagesArray = [
+                   {'percent': 0, 'color': '#FF1E7C' , 'text': 'bbbb2'}
+               ];
            }else{
                var coefficient = 10;
+               var percentagesArray = [
+                   {'percent': initPercent * coefficient, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
+                   {'percent': 0, 'color': '#FF1E7C' , 'text': 'bbbb2'}
+               ];
            }
            $("#diagram").circliful({
                animation: animationStatus,
@@ -41,14 +48,9 @@
                textStyle: 'font-size: 14px;',
                textColor: '#fffdfe',
                multiPercentage: 1,
-               percentages: [
-                   {'percent': initPercent * coefficient, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
-                   {'percent': 0, 'color': '#FF1E7C' , 'text': 'bbbb2'},
-               ],
-
+               percentages: percentagesArray,
                text: initName,
                textCustom: initPercent
-
            });
        }
        function drowDiagram(hoverName, hoverPercent, initName, initPercent){
@@ -59,9 +61,17 @@
                    initPercent = "";
                }
 
-                var coefficient = 0;
+               var coefficient = 0;
+
+               var percentagesArray = [
+                   {'percent': hoverPercent*10, 'color': '#FF1E7C' }
+               ];
            }else{
                 var coefficient = 10;
+                var percentagesArray = [
+                   {'percent': initPercent*coefficient, 'color': '#00BFD1' }, /*basic*/
+                   {'percent': hoverPercent*10, 'color': '#FF1E7C' }
+               ];
            }
            $('#diagram').find('svg').remove();
            $("#diagram").circliful({
@@ -74,14 +84,9 @@
                textStyle: 'font-size: 14px;',
                textColor: '#fffdfe',
                multiPercentage: 1,
-               percentages: [
-                   {'percent': initPercent*coefficient, 'color': '#00BFD1' }, /*basic*/
-                   {'percent': hoverPercent*10, 'color': '#FF1E7C' },
-               ],
-
+               percentages: percentagesArray,
                text: initName,
                textCustom: initPercent
-
            });
        }
     //Close city-popup
@@ -89,6 +94,7 @@
             $('.city-popup-box').fadeOut(400);
             $('.navigation-city .active').removeClass('active');
             $('.navigation-sub').removeClass('sub-show');
+            $('.navigation-item > a').removeClass('active-item');
             $('#diagram').find('svg').remove();
             $('.main-nav, .socials').addClass('shown');
         });
@@ -123,6 +129,8 @@
 //Show submenu with cities
         $('.navigation').on('click', '.navigation-item > a', function (e) {
             e.preventDefault();
+            $('.navigation-item > a').removeClass('active-item');
+            $(this).addClass('active-item');
             $('.navigation-city .active').removeClass('active');
             if($(this).next('.navigation-sub').hasClass("sub-show")){
                 $('.navigation-sub').removeClass('sub-show');
@@ -278,11 +286,7 @@ function initDiagramEvent( initName, initPercent ){
         textStyle: 'font-size: 14px;',
         textColor: '#fffdfe',
         multiPercentage: 1,
-        percentages: [
-            {'percent': initPercent*10, 'color': '#00BFD1', 'text': 'bbbb' }, /*basic*/
-            {'percent': 0, 'color': '#FF1E7C' , 'text': 'bbbb2'},
-        ],
-
+        percentages: [{'percent': 0, 'color': '#FF1E7C' , 'text': 'bbbb2'}],
         text: initName,
         textCustom: initPercent
 
