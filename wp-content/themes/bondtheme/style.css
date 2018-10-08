@@ -624,9 +624,9 @@ html, body, .site, .site-content{
 .popup-text{
     color: #fff;
     text-align: center;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.2;
-    font-weight: 300;
+    font-weight: 400;
     margin: 0 0 25px;
 }
 .popup-bond{
