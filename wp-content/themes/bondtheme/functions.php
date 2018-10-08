@@ -138,6 +138,9 @@ function bondtheme_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+    // OpenLayers scripts
+	wp_enqueue_script( 'openlayers', 'https://openlayers.org/en/v3.8.2/build/ol.js', array( 'jquery' ), '3.8.2', false);
+	wp_enqueue_style( 'openlayers_style', 'https://openlayers.org/en/v3.8.2/css/ol.css', '', '3.8.2');
 }
 add_action( 'wp_enqueue_scripts', 'bondtheme_scripts' );
 
@@ -348,6 +351,99 @@ function cityPopup() {
 add_action('wp_ajax_city-popup', 'cityPopup');
 add_action('wp_ajax_nopriv_city-popup', 'cityPopup');
 
+function get_lon_lat_by_city( $city_name ) {
+    $city = urlencode( $city_name );
+    $response = file_get_contents( 'https://geocoder.api.here.com/6.2/geocode.json?app_id=KngCq2F5ZiDAoC5mHcOf&app_code=B9eBCS_ZNlw3uV-F8JilqQ&city=' . $city );
+    $position = json_decode( $response )->Response->View[0]->Result[0]->Location->DisplayPosition;
+    return array(
+        'lat' => $position->Latitude,
+        'lng' =>$position->Longitude,
+    );
+}
+function city_update( $post_id, $post, $update ) {
+    if ( $update ) {
+        if ( current_user_can('manage_options') ) {
+            $geojson = get_option( 'geojson' );
+            if ( $geojson !== '' && false !== $geojson ) { // If not empty and Is created
+                $json_decoded = json_decode( $geojson, true );
+                $features = $json_decoded['features'];
+                $arr_el = array_search( $post_id, array_column( $features, 'id' ) );
+                $coordinates = get_lon_lat_by_city( $post->post_title );
+                $updated_city = [
+                    'id' => $post_id,
+                    'name' => $post->post_title,
+                    'coordinates' => [
+                        $coordinates['lng'],
+                        $coordinates['lat'],
+                    ],
+                ];
+                if ( false !== $arr_el ) {
+                    $features[(int)$arr_el] = $updated_city;
+                } else {
+                    $features[] = $updated_city;
+                }
+
+                $new_geojson = json_encode( ['features' => $features] );
+                $updated = update_option( 'geojson', $new_geojson, true );
+//                if ($updated) {
+//                    echo "This city's GeoJSON wasn't updated :( It's <em>created</em> in some cases...";
+//                }
+            } elseif ( !$geojson ) { // If not created
+                $cities = get_posts( array(
+                    'post_type' => 'city',
+                    'posts_per_page' => -1,
+                    'post_status' => 'publish',
+                ) );
+                $features = [];
+                foreach ( $cities as $city ) {
+                    $coordinates = get_lon_lat_by_city( $city->post_title );
+                    $features[] = array(
+                        'id' => $city->ID,
+                        'name' => $city->post_title,
+                        'coordinates' => array(
+                            $coordinates['lng'],
+                            $coordinates['lat'],
+                        ),
+                    );
+                }
+                $geo = array(
+                    'features' => $features,
+                );
+                $geojson = json_encode( $geo );
+                $added = add_option( 'geojson', $geojson, '', true );
+                if ( !$added ) {
+                    echo "Troubles while adding new option (GeoJSON)";
+                }
+
+            }
+        } else {
+            echo "User can't change options (GeoJSON)";
+        }
+
+    }
+}
+
+
+function city_trash( $post_id ) {
+    if ( 'city' === get_post_type( $post_id ) ) {
+        $geojson = get_option( 'geojson' );
+        if ( false !== $geojson ) {
+            $geo = json_decode( $geojson, true );
+            $features = $geo['features'];
+            $arr_el = array_search( $post_id, array_column( $features, 'id' ) );
+            if ( false === $arr_el ) {
+                return;
+            }
+            unset( $features[(int) $arr_el] );
+            $geo['features'] = array_values( $features );
+            $geojson = json_encode( $geo );
+            update_option('geojson', $geojson, true );
+        }
+    }
+}
+
+add_action( 'save_post_city', 'city_update', 10, 3 );
+add_action( 'trashed_post', 'city_trash' );
 
 if( function_exists('acf_add_options_page') ) {
 
