@@ -264,7 +264,7 @@ function eventMapAjax( currentCity , $) {
             $(".popup-title").html(title);
             $(".city-popup-data").html(topContent);
             $(".city-features > ul").html(fetureContent);
-            $(".popup-text > p").html(description);
+            $(".popup-text > div").html(description);
             $("#basicFeature").attr("data-startFeture", startFeture);
             $("#basicFeature").attr("data-startScore", startScore);
             initDiagramEvent( startFeture, startScore );
