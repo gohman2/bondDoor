@@ -2,7 +2,7 @@ jQuery(function ($) {
     $("#titlewrap").append("<div id='suggestions'></div>");
     $("#title").on('keyup', function () {
         $.getJSON(
-            'http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=KngCq2F5ZiDAoC5mHcOf&app_code=B9eBCS_ZNlw3uV-F8JilqQ&query=' + $("#title").val(),
+            'http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=KngCq2F5ZiDAoC5mHcOf&app_code=B9eBCS_ZNlw3uV-F8JilqQ&country=GBR&query=' + $("#title").val(),
             function (response) {
              var suggestions = response.suggestions, suggestions_cities = [], suggestions_html = '';
              for ( var n in suggestions ) {
@@ -22,5 +22,6 @@ jQuery(function ($) {
 
     $("#titlewrap").on("click", 'span', function () {
         $("#title").val($(this).html());
+        $("#suggestions").html("");
     });
 });

@@ -61,6 +61,14 @@ if( !is_404() ) {
         var mapImage = new ol.layer.Tile({
             source: new ol.source.OSM()
         });
+        
+        var coordinates = [
+            -6.2426,
+            55.4808
+        ];
+        if (window.innerWidth <= 890) {
+            coordinates = [-1.8904,52.4862];
+        }
 
         var map = new ol.Map({
             controls : ol.control.defaults({
@@ -72,10 +80,7 @@ if( !is_404() ) {
             ],
             target: 'map',
             view: new ol.View({
-                center: ol.proj.fromLonLat([
-                    -6.2426,
-                    55.4808
-                ]),
+                center: ol.proj.fromLonLat(coordinates),
                 zoom: 0,
                 maxResolution: 2800
             })

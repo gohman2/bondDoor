@@ -1,0 +1,17 @@
+#suggestions {
+    margin-top: 8px;
+}
+
+#suggestions span {
+    border: solid 2px lightblue;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding: 3px;
+    margin-right: 5px;
+}
+
+#suggestions span:hover {
+    cursor: pointer;
+    background-color: lightblue;
+}
