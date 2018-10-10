@@ -23,8 +23,7 @@ if( !is_404() ) {
                     image: new ol.style.Circle({
                         radius: radius,
                         fill: new ol.style.Fill({
-                            color: 'rgba(239, 87, 153, 0.7)',
-                            cursor: 'pointer'
+                            color: 'rgba(239, 87, 153, 0.7)'
                         }),
                         stroke: new ol.style.Stroke({
                             color: 'rgba(239, 87, 153, 0.3)',
