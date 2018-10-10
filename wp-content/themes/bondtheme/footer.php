@@ -23,11 +23,12 @@ if( !is_404() ) {
                     image: new ol.style.Circle({
                         radius: radius,
                         fill: new ol.style.Fill({
-                            color: 'rgba(239, 87, 153, 0.7)'
+                            color: 'rgba(239, 87, 153, 0.7)',
+                            cursor: 'pointer'
                         }),
                         stroke: new ol.style.Stroke({
                             color: 'rgba(239, 87, 153, 0.3)',
-                            width: 10
+                            width: 10,
                         })
                     })
                 })];
@@ -99,6 +100,12 @@ if( !is_404() ) {
 
         map.on('click', function(evt) {
             displayFeatureInfo(evt.pixel);
+        });
+        map.on('pointermove', function (e) {
+            if (e.dragging) return;
+            var pixel = map.getEventPixel(e.originalEvent);
+            var hit = map.hasFeatureAtPixel(pixel);
+            map.getViewport().style.cursor = hit ? 'pointer' : '';
         });
     </script>
     <?php
