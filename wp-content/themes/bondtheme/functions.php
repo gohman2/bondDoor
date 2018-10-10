@@ -456,7 +456,7 @@ function admin_cities_suggestions_scripts( $hook ) {
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
         if ( 'city' === $post->post_type ) {
             wp_enqueue_style('suggestion', get_template_directory_uri() . '/admin/css/suggestions.css');
-            wp_enqueue_script('suggestion', get_template_directory_uri() . '/admin/js/suggestions.js', ['jquery'], '0.1', true);
+            wp_enqueue_script('suggestion', get_template_directory_uri() . '/admin/js/suggestions.js', ['jquery'], '0.1.1', true);
         }
     }
 }
