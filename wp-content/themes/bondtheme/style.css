@@ -996,6 +996,7 @@ html, body, .site, .site-content{
     -o-transition: 0.2s;
     transition: 0.2s;
 }
+.city-features li.active-item,
 .city-features li:hover{
     color: #ff1e7c;
 }
@@ -1010,6 +1011,7 @@ html, body, .site, .site-content{
     -o-transition: 0.2s;
     transition: 0.2s;
 }
+.city-features li.active-item span,
 .city-features li:hover span{
     opacity: 1;
 }
