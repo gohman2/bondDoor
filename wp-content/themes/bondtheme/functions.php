@@ -353,7 +353,7 @@ add_action('wp_ajax_nopriv_city-popup', 'cityPopup');
 
 function get_lon_lat_by_city( $city_name ) {
     $city = urlencode( $city_name );
-    $response = file_get_contents( 'https://geocoder.api.here.com/6.2/geocode.json?app_id=KngCq2F5ZiDAoC5mHcOf&app_code=B9eBCS_ZNlw3uV-F8JilqQ&city=' . $city );
+    $response = file_get_contents( 'https://geocoder.api.here.com/6.2/geocode.json?app_id=KngCq2F5ZiDAoC5mHcOf&app_code=B9eBCS_ZNlw3uV-F8JilqQ&searchtext=' . $city . ',%20United%20Kingdom' );
     $position = json_decode( $response )->Response->View[0]->Result[0]->Location->DisplayPosition;
     return array(
         'lat' => $position->Latitude,
@@ -450,5 +450,17 @@ if( function_exists('acf_add_options_page') ) {
     acf_add_options_page('Main Settings');
 
 }
+
+function admin_cities_suggestions_scripts( $hook ) {
+    global $post;
+    if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+        if ( 'city' === $post->post_type ) {
+            wp_enqueue_style('suggestion', get_template_directory_uri() . '/admin/css/suggestions.css');
+            wp_enqueue_script('suggestion', get_template_directory_uri() . '/admin/js/suggestions.js', ['jquery'], '', true);
+        }
+    }
+}
+
+add_action( 'admin_enqueue_scripts', 'admin_cities_suggestions_scripts', 10, 1 );
 
 show_admin_bar(false);
