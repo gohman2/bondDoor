@@ -64,7 +64,7 @@ if( !is_404() ) {
         
         var coordinates = [
             -6.2426,
-            55.4808
+            53.4808
         ];
         if (window.innerWidth <= 890) {
             coordinates = [-1.8904,52.4862];
