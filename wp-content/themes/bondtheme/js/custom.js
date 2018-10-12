@@ -191,6 +191,7 @@
                     $("#basicFeature").attr("data-startScore", startScore);
                     initDiagram( startFeture, startScore, 1 );
                     $('.preloader-wrapper').hide();
+                    $('.city-popup .navigation-item:first').trigger('click');
                 }
             });
 
@@ -265,6 +266,7 @@ function eventMapAjax( currentCity , $) {
             $("#basicFeature").attr("data-startScore", startScore);
             initDiagramEvent( startFeture, startScore );
             $('.preloader-wrapper').hide();
+            $('.city-popup .navigation-item:first').trigger('click');
         }
     });
 }
