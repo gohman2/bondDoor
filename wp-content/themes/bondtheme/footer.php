@@ -14,7 +14,7 @@ if( !is_404() ) {
 ?>
     <script>
 
-        var styleCache = {};
+        var styleCache = {}, ww = window.innerWidth;
         var styleFunction = function(feature, resolution) {
             var radius = 5;
             var style = styleCache[radius];
@@ -63,11 +63,12 @@ if( !is_404() ) {
         });
         
         var coordinates = [
-            -6.2426,
-            53.4808
+            -4.2518,55.8642
         ];
-        if (window.innerWidth <= 890) {
-            coordinates = [-1.8904,52.4862];
+        if (ww <= 890) {
+            coordinates = [-4.5481,54.2361]; // Isle of Man is the center if screen width <= 890
+        } else if (ww > 890 && ww <= 1330) {
+            coordinates = [-4.9329,54.8925]; // ~Carlisle is the center if screen width is between 890 and 1330
         }
 
         var map = new ol.Map({

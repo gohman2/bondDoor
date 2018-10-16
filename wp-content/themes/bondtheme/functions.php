@@ -312,12 +312,14 @@ function cityPopup() {
     if( isset( $_POST['cityId'] ) ) {
         $cityId = $_POST['cityId'];
         $startFeture = $_POST['startFeture'];
-        $title = get_the_title( $cityId );
-        $title2 = str_replace(' ', '+', $title);
-        $response = file_get_contents('https://geocoder.api.here.com/6.2/geocode.json?app_id=KngCq2F5ZiDAoC5mHcOf&app_code=B9eBCS_ZNlw3uV-F8JilqQ&city='.$title.'');
-        $response = json_decode($response);
-        $lat = $response->Response->View[0]->Result[0]->Location->DisplayPosition->Latitude;
-        $lng = $response->Response->View[0]->Result[0]->Location->DisplayPosition->Longitude;
+        $geojson = get_option( 'geojson' );
+        $json = json_decode( $geojson, true );
+        $features = $json['features'];
+        $feature_id = array_search($cityId, array_column($features, 'id'));
+        $feature = $features[$feature_id];
+        $title = $feature['name'];
+        $lat = $feature['coordinates'][1];
+        $lng = $feature['coordinates'][0];
         $informations = get_field('information', $cityId);
         if( $informations ){
             $infContent = '';
