@@ -69,6 +69,8 @@ if( !is_404() ) {
             coordinates = [-4.5481,54.2361]; // Isle of Man is the center if screen width <= 890
         } else if (ww > 890 && ww <= 1330) {
             coordinates = [-4.9329,54.8925]; // ~Carlisle is the center if screen width is between 890 and 1330
+        } else if (ww > 1330 && ww <= 1800) {
+            coordinates = [-4.2518,54.8642];
         }
 
         var map = new ol.Map({
