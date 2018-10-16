@@ -70,7 +70,7 @@ if( !is_404() ) {
         } else if (ww > 890 && ww <= 1330) {
             coordinates = [-4.9329,54.8925]; // ~Carlisle is the center if screen width is between 890 and 1330
         } else if (ww > 1330 && ww <= 1920) {
-            coordinates = [-3.2518,53.0642];
+            coordinates = [-3.2518,54.0642];
         }
 
         var map = new ol.Map({
