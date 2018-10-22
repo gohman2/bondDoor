@@ -85,7 +85,7 @@ if( !is_404() ) {
             view: new ol.View({
                 center: ol.proj.fromLonLat(coordinates),
                 zoom: 0,
-                maxResolution: 2800
+                maxResolution: 3200
             })
         });
 

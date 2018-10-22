@@ -27,4 +27,10 @@ jQuery(function ($) {
         $("#title").val($(this).html());
         $("#suggestions").html("");
     });
+    $('.acf-input-wrap input[type=text]').on('change', function () {
+        $(this).each(function () {
+            let old_val = $(this).val();
+            $(this).val(old_val.trim());
+        });
+    });
 });
