@@ -135,6 +135,16 @@
                 $(this).next('.navigation-sub').addClass('sub-show');
             }
         });
+
+//Info popup
+        $('.info-popup-opener').on('click', function () {
+            $('.info-popup-box').fadeIn(300);
+        });
+
+        $('.info-popup-box .popup-close').on('click', function () {
+            $(this).closest('.info-popup-box').fadeOut(300);
+        });
+
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
             $('#diagram').find('svg').remove();

@@ -41,7 +41,7 @@
             <?php $social = get_field('social_link', 'options');	 ?>
             <li><a href="<?php echo !empty($social['facebook']) ? $social['facebook'] : "#" ; ?>"><img src="/wp-content/themes/bondtheme/images/facebook.svg" alt="facebook"></a></li>
             <li><a href="<?php echo !empty($social['twitter']) ? $social['twitter'] : "#" ; ?>"><img src="/wp-content/themes/bondtheme/images/twitter.svg" alt="twitter"></a></li>
-            <li><a href="<?php echo !empty($social['information']) ? $social['information'] : "#" ; ?>"><img src="/wp-content/themes/bondtheme/images/information.svg" alt="information"></a></li>
+            <li><a class="info-popup-opener" href="<?php echo !empty($social['information']) ? $social['information'] : "#" ; ?>"><img src="/wp-content/themes/bondtheme/images/information.svg" alt="information"></a></li>
         </ul>
     </div>
     <div class="city-popup-box">
@@ -93,6 +93,22 @@
                     <span><img src="/wp-content/themes/bondtheme/images/0.svg" alt="0"></span>
                     <span><img src="/wp-content/themes/bondtheme/images/0.svg" alt="0"></span>
                     <span><img src="/wp-content/themes/bondtheme/images/7.svg" alt="7"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-popup-box">
+        <div class="info-popup-wrapper">
+            <div class="info-popup">
+                <h3 class="popup-title">ABOUT THE MAP</h3>
+                <div class="popup-text">
+                    <h3>About The Map</h3>
+                    <p>How friendly is your local area? Do you know all of your neighbours names? We reveal the parts of Britain where you're more likely to receive a warm welcome, and also where you can expect a frostier reception.</p>
+                    <h3>Information about the data</h3>
+                    <p>How friendly is your local area? Do you know all of your neighbours names? We reveal the parts of Britain where you're more likely to receive a warm welcome, and also where you can expect a frostier reception.</p>
+                </div>
+                <div class="popup-close">
+                    <img src="/wp-content/themes/bondtheme/images/close.svg" alt="close popup">
                 </div>
             </div>
         </div>

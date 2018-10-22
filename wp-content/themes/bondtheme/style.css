@@ -580,6 +580,7 @@ html, body, .site, .site-content{
     height: 100%;
     position: relative;
 }
+.info-popup-wrapper,
 .main-popup,
 .city-popup-wrapper{
     position: absolute;
@@ -602,6 +603,7 @@ html, body, .site, .site-content{
     overflow-y: auto;
     cursor: pointer;
 }
+.info-popup,
 .popup,
 .city-popup{
     background: url('/wp-content/themes/bondtheme/images/popup-bg.svg') 0 0 / cover #36394d;
@@ -800,6 +802,7 @@ html, body, .site, .site-content{
     color: #fffdfe;
     margin: 0 0 20px;
 }
+.info-popup-wrapper,
 .city-popup-wrapper{
     background: none;
     cursor: auto;
@@ -807,6 +810,10 @@ html, body, .site, .site-content{
 .city-popup-box{
     display: none;
 }
+.info-popup-box{
+    display: none;
+}
+.info-popup,
 .city-popup{
     background: rgba(50,53,71,0.9);
     padding: 40px 20px 35px;
@@ -837,6 +844,18 @@ html, body, .site, .site-content{
     font-size: 16px;
     font-family: 'Gill Sans', sans-serif;
     color: #cacace;
+}
+.info-popup .popup-text{
+    margin: 0;
+    text-align: left;
+    font-weight: 300;
+}
+.info-popup .popup-text h3{
+    font-weight: 400;
+    margin: 0 0 20px;
+}
+.info-popup .popup-text p{
+    margin: 0 0 20px;
 }
 .circliful .outer {
     fill: transparent;
