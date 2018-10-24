@@ -333,11 +333,11 @@ function cityPopup() {
             /*feture popup*/
             $fetureConetnt = '';
             foreach ( $features as $feature){
-                if($startFeture == $feature['name']){
+                if($startFeture == $feature['name']->name){
                     $startScore = $feature['score'];
                     continue;
                 }
-                $fetureConetnt .= ' <li data-percent="'.$feature['score'].'" class="navigation-item"><span>'.$feature['score'].'</span>'.$feature['name'].'</li>';
+                $fetureConetnt .= ' <li data-percent="'.$feature['score'].'" class="navigation-item"><span>'.$feature['score'].'</span>'.$feature['name']->name.'</li>';
 
             }
         }
