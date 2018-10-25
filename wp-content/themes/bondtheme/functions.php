@@ -311,7 +311,7 @@ function cityPopup() {
     $resultArray = array();
     if( isset( $_POST['cityId'] ) ) {
         $cityId = $_POST['cityId'];
-        $startFeture = $_POST['startFeture'];
+        $startFeature = $_POST['startFeture'];
         $geojson = get_option( 'geojson' );
         $json = json_decode( $geojson, true );
         $features = $json['features'];
@@ -330,16 +330,17 @@ function cityPopup() {
         }
         $features = get_field('features_city', $cityId);
         if( $features ){
-            /*feture popup*/
-            $fetureConetnt = '';
+            /*feature popup*/
+            $featureContent = '';
             foreach ( $features as $feature){
-                if($startFeture == $feature['name']->name){
+                if($startFeature == $feature['name']->name){
                     $startScore = $feature['score'];
                     continue;
                 }
-                $fetureConetnt .= ' <li data-percent="'.$feature['score'].'" class="navigation-item"><span>'.$feature['score'].'</span>'.$feature['name']->name.'</li>';
+                $featureContent .= ' <li data-percent="'.$feature['score'].'" class="navigation-item"><span>'.$feature['score'].'</span>'.$feature['name']->name.'</li>';
 
             }
+            $featureContent .= '<li data-percent="'.$startScore.'" class="current-element"><span>'.$startScore.'</span>'.$startFeature.'</li>';
         }
         if( get_field('description', $cityId)){
             $description = get_field('description', $cityId);
@@ -347,9 +348,9 @@ function cityPopup() {
         $resultArray = array(
             'title' => $title,
             'topContent' => $infContent,
-            'fetureContent' => $fetureConetnt,
+            'fetureContent' => $featureContent,
             'description' => $description,
-            'startFeture'=>$startFeture,
+            'startFeture'=>$startFeature,
             'startScore'=>$startScore,
             'lat' => $lat,
             'lng' => $lng,

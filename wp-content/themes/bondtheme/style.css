@@ -1461,3 +1461,7 @@ html, body, .site, .site-content{
 .ol-viewport .ol-zoom button:focus {
     background: #323547;
 }
+
+.current-element span, .current-element {
+    color: rgb(0, 191, 209) !important;
+}
