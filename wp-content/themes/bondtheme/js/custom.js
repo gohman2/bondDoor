@@ -2,26 +2,6 @@
 (function($) {
     $(document).ready(function () {
 
-        function initInnerMap( lngVal, latVal ){
-
-            var map = new ol.Map({
-                controls : ol.control.defaults({
-                    attribution : false,
-                    zoom : false
-                }),
-                layers: [mapImage],
-                target: 'mapInner',
-                view: new ol.View({
-                    center: ol.proj.fromLonLat([
-                        lngVal + 0.02,
-                        latVal
-                    ]),
-                    zoom: 6,
-                    maxResolution: 2800
-                })
-            });
-
-        }
 //Diagram init
        function initDiagram( initName, initPercent, animationStatus ){
 
@@ -182,17 +162,30 @@
                 },
                 complete:function(msg){
                     var response = msg.responseJSON;
-                    var title         = response.title;
-                    var topContent    = response.topContent;
-                    var fetureContent = response.fetureContent;
-                    var description   = response.description;
-                    var startFeture   = response.startFeture;
-                    var startScore    = response.startScore;
-                    var lngVal    = response.lng;
-                    var latVal    = response.lat;
+                    var title         = response.title,
+                    topContent    = response.topContent,
+                    fetureContent = response.fetureContent,
+                    description   = response.description,
+                    startFeture   = response.startFeture,
+                    startScore    = response.startScore,
+                    lngVal    = response.lng,
+                    latVal    = response.lat;
+                    if (response.image_map !== null) {
+                        var image_map = response.image_map.sizes.image_map;
+                    }
                     $('.city-popup-box').fadeIn(200);
                     $("#mapInner").html('');
-                    initInnerMap( lngVal, latVal );
+                    if (image_map !== undefined && image_map !== null) {
+                        $('#mapInner').css({
+                            'background-image': 'url(' + image_map + ')',
+                            'background-size': 'cover',
+                            // 'margin-left': '126px',
+                            'width': '420px',
+                            'height': '250px'
+                        });
+                    } else {
+                        initInnerMap( lngVal, latVal );
+                    }
                     $(".popup-title").html(title);
                     $(".city-popup-data").html(topContent);
                     $(".city-features > ul").html(fetureContent);
@@ -247,27 +240,21 @@ function eventMapAjax( currentCity , $) {
             var startScore    = response.startScore;
             var lngVal    = response.lng;
             var latVal    = response.lat;
+            if (response.image_map !== null) {
+                var image_map = response.image_map.sizes.image_map;
+            }
             $('.city-popup-box').fadeIn(200);
             $("#mapInner").html('');
-
-            // Instantiate (and display) a map object:
-            var map = new ol.Map({
-                controls : ol.control.defaults({
-                    attribution : false,
-                    zoom : false
-                }),
-                layers: [mapImage],
-                target: 'mapInner',
-                view: new ol.View({
-                    center: ol.proj.fromLonLat([
-                        lngVal + 0.02,
-                        latVal
-                    ]),
-                    zoom: 6,
-                    maxResolution: 2800
-                })
-            });
-
+            if (image_map !== undefined && image_map !== null) {
+                $('#mapInner').css({
+                    'background-image': 'url(' + image_map + ')',
+                    'background-size': 'cover',
+                    'width': '420px',
+                    'height': '250px'
+                });
+            } else {
+                initInnerMap( lngVal, latVal );
+            }
             $(".popup-title").html(title);
             $(".city-popup-data").html(topContent);
             $(".city-features > ul").html(fetureContent);
@@ -299,4 +286,25 @@ function initDiagramEvent( initName, initPercent ){
         textCustom: initPercent
 
     });
+}
+
+function initInnerMap( lngVal, latVal ){
+
+    return new ol.Map({
+        controls : ol.control.defaults({
+            attribution : false,
+            zoom : false
+        }),
+        layers: [mapImage],
+        target: 'mapInner',
+        view: new ol.View({
+            center: ol.proj.fromLonLat([
+                lngVal + 0.02,
+                latVal
+            ]),
+            zoom: 6,
+            maxResolution: 2800
+        })
+    });
+
 }

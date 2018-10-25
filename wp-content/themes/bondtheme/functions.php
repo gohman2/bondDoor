@@ -344,7 +344,17 @@ function cityPopup() {
         if( get_field('description', $cityId)){
             $description = get_field('description', $cityId);
         }
-        $resultArray = array('title' => $title, 'topContent' => $infContent, 'fetureContent' => $fetureConetnt, 'description' => $description, 'startFeture'=>$startFeture, 'startScore'=>$startScore, 'lat' => $lat, 'lng' => $lng );
+        $resultArray = array(
+            'title' => $title,
+            'topContent' => $infContent,
+            'fetureContent' => $fetureConetnt,
+            'description' => $description,
+            'startFeture'=>$startFeture,
+            'startScore'=>$startScore,
+            'lat' => $lat,
+            'lng' => $lng,
+            'image_map' => get_field('image_map', $cityId),
+        );
     }
     wp_send_json($resultArray);
     die();
@@ -464,5 +474,6 @@ function admin_cities_suggestions_scripts( $hook ) {
 }
 
 add_action( 'admin_enqueue_scripts', 'admin_cities_suggestions_scripts', 10, 1 );
+add_image_size('image_map', 310, 250, false);
 
 show_admin_bar(false);
