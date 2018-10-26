@@ -1462,6 +1462,11 @@ html, body, .site, .site-content{
     background: #323547;
 }
 
-.current-element span, .current-element {
+.current-element span, .current-element, .current-element:hover {
     color: rgb(0, 191, 209) !important;
+    cursor: default;
+}
+
+li.current-element span {
+    opacity: 1;
 }

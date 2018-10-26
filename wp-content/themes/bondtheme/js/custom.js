@@ -170,12 +170,12 @@
                     startScore    = response.startScore,
                     lngVal    = response.lng,
                     latVal    = response.lat;
-                    if (response.image_map !== null) {
+                    if (response.image_map !== null && response.image_map.sizes) {
                         var image_map = response.image_map.sizes.image_map;
                     }
                     $('.city-popup-box').fadeIn(200);
                     $("#mapInner").html('');
-                    if (image_map !== undefined && image_map !== null) {
+                    if (response.image_map !== null && image_map !== undefined && image_map !== false) {
                         $('#mapInner').css({
                             'background-image': 'url(' + image_map + ')',
                             'background-size': 'cover',
@@ -240,12 +240,12 @@ function eventMapAjax( currentCity , $) {
             var startScore    = response.startScore;
             var lngVal    = response.lng;
             var latVal    = response.lat;
-            if (response.image_map !== null) {
+            if (response.image_map !== null && response.image_map.sizes) {
                 var image_map = response.image_map.sizes.image_map;
             }
             $('.city-popup-box').fadeIn(200);
             $("#mapInner").html('');
-            if (image_map !== undefined && image_map !== null) {
+            if (response.image_map !== null && image_map !== undefined && image_map !== false) {
                 $('#mapInner').css({
                     'background-image': 'url(' + image_map + ')',
                     'background-size': 'cover',
