@@ -43,8 +43,8 @@
         ?>
         <ul>
             <?php $social = get_field('social_link', 'options');	 ?>
-            <li><a href="https://www.facebook.com/sharer.php?u=<?php echo $site_link; ?>&amp;t=<?php echo $site_title; ?>"><img src="/wp-content/themes/bondtheme/images/facebook.svg" alt="facebook" target="_blank"></a></li>
-            <li><a href="https://twitter.com/share?url=<?php echo $site_link; ?>&amp;text=<?php echo $site_title; ?>&amp;hashtags=bondnextdoor"><img src="/wp-content/themes/bondtheme/images/twitter.svg" alt="twitter" target="_blank"></a></li>
+            <li><a href="https://www.facebook.com/sharer.php?u=<?php echo $site_link; ?>&amp;t=<?php echo $site_title; ?>" target="_blank"><img src="/wp-content/themes/bondtheme/images/facebook.svg" alt="facebook"></a></li>
+            <li><a href="https://twitter.com/share?url=<?php echo $site_link; ?>&amp;text=<?php echo $site_title; ?>&amp;hashtags=bondnextdoor" target="_blank"><img src="/wp-content/themes/bondtheme/images/twitter.svg" alt="twitter"></a></li>
             <li><a class="info-popup-opener" href="#"><img src="/wp-content/themes/bondtheme/images/information.svg" alt="information"></a></li>
         </ul>
     </div>
