@@ -855,7 +855,7 @@ html, body, .site, .site-content{
     text-align: left;
     font-weight: 300;
     overflow-y: auto;
-    max-height: 350px;
+    max-height: 375px;
 }
 .info-popup .popup-text h3{
     font-weight: 400;
