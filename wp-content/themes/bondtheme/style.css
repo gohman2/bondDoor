@@ -794,6 +794,7 @@ html, body, .site, .site-content{
     height: 6px;
     margin-top: -3px;
 }
+.info-popup-title,
 .popup-title{
     font-family: 'Libre Baskerville', serif;
     font-size: 26px;
@@ -1369,6 +1370,7 @@ html, body, .site, .site-content{
     .city-popup .popup-text > p{
         overflow: hidden;
     }
+    .info-popup-title,
     .popup-title{
         padding: 0 20px;
     }

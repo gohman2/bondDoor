@@ -105,7 +105,7 @@
         <div class="info-popup-wrapper">
             <div class="info-popup">
                 <?php $about_section = get_field('about_section', 'options'); ?>
-                <h3 class="popup-title"><?php echo $about_section['title'] ?></h3>
+                <h3 class="info-popup-title"><?php echo $about_section['title'] ?></h3>
                 <div class="popup-text">
                     <?php echo $about_section['content'] ?>
                 </div>
