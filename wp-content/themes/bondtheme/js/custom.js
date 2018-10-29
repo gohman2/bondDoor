@@ -118,16 +118,31 @@
 
 //Info popup
         $('.info-popup-opener').on('click', function () {
-            $('.info-popup-box').fadeIn(300);
+            $('.info-popup-box').fadeIn(400);
+
+            $('.city-popup-box').fadeOut(400);
+            $('.navigation-city .active').removeClass('active');
+            $('.navigation-sub').removeClass('sub-show');
+            $('.navigation-item > a').removeClass('active-item');
+
+            var ww = $(window).width();
+            if(ww < 891){
+                $('.main-nav').removeClass('mobile-show');
+                $('.main-nav, .socials').removeClass('shown');
+                $('.info-popup-box').fadeIn(400);
+            } else if(ww < 1270){
+                $('.navigation-sub').removeClass('sub-show');
+            }
         });
 
         $('.info-popup-box .popup-close').on('click', function () {
-            $(this).closest('.info-popup-box').fadeOut(300);
+            $('.info-popup-box').fadeOut(400);
         });
 
 //City popup
         $('.wrapper').on('click', '.navigation-city a', function () {
             $('#diagram').find('svg').remove();
+            $('.info-popup-box').fadeOut(400);
             var ww = $(window).width();
             if(ww < 891){
                 $('.main-nav').removeClass('mobile-show');

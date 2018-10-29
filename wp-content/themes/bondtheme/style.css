@@ -603,6 +603,9 @@ html, body, .site, .site-content{
     overflow-y: auto;
     cursor: pointer;
 }
+.info-popup-wrapper{
+    padding: 0;
+}
 .info-popup,
 .popup,
 .city-popup{
@@ -813,6 +816,7 @@ html, body, .site, .site-content{
 }
 .info-popup-box{
     display: none;
+    z-index: 999;
 }
 .info-popup,
 .city-popup{
@@ -850,6 +854,8 @@ html, body, .site, .site-content{
     margin: 0;
     text-align: left;
     font-weight: 300;
+    overflow-y: auto;
+    max-height: 350px;
 }
 .info-popup .popup-text h3{
     font-weight: 400;
