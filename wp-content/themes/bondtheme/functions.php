@@ -139,8 +139,8 @@ function bondtheme_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
     // OpenLayers scripts
-	wp_enqueue_script( 'openlayers', 'https://openlayers.org/en/v3.8.2/build/ol.js', array( 'jquery' ), '3.8.2', false);
-	wp_enqueue_style( 'openlayers_style', 'https://openlayers.org/en/v3.8.2/css/ol.css', '', '3.8.2');
+	wp_enqueue_script( 'openlayers', get_template_directory_uri() . '/ol/ol.js', array( 'jquery' ), '3.8.2', false);
+	wp_enqueue_style( 'openlayers_style', get_template_directory_uri() . '/ol/ol.css', '', '3.8.2');
 }
 add_action( 'wp_enqueue_scripts', 'bondtheme_scripts' );
 
